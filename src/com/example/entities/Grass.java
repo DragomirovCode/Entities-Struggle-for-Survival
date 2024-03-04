@@ -1,7 +1,6 @@
 package com.example.entities;
 
 import com.example.Coordinates;
-import com.example.Entity;
 
 public class Grass extends Entity {
 
