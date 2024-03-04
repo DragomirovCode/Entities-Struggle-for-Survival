@@ -7,8 +7,7 @@ import java.util.HashMap;
 public class Map {
     private int width;
     private int height;
-    private HashMap<Coordinates, Entity> entities = new HashMap<>();
-
+    private HashMap<Coordinates, Entity> entities;
 
     public Map(int width, int height){
         this.width = width;
@@ -36,5 +35,13 @@ public class Map {
 
     public HashMap<Coordinates, Entity> getEntities() {
         return entities;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }
