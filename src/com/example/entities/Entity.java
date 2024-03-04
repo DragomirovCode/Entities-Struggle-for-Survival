@@ -5,9 +5,19 @@ import com.example.Coordinates;
 abstract public class Entity {
     private Coordinates coordinates;
 
-    public Entity(Coordinates coordinates){
+    private String Appearance;
+
+    public Entity(String Appearance, Coordinates coordinates){
         this.coordinates = coordinates;
+        this.Appearance = Appearance;
     }
 
-    protected abstract String getAppearance();
+    public String getAppearance() {
+        return Appearance;
+    }
+
+    public Coordinates getCoordinates() {
+        return coordinates;
+    }
+
 }
