@@ -5,7 +5,15 @@ import com.example.entities.Entity;
 import java.util.HashMap;
 
 public class Map {
+    private int width;
+    private int height;
     private HashMap<Coordinates, Entity> entities = new HashMap<>();
+
+
+    public Map(int width, int height){
+        this.width = width;
+        this.height = height;
+    }
 
     public void addEntity(Coordinates coordinates, Entity entity){
         entities.put(coordinates, entity);
