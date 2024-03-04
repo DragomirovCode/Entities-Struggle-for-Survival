@@ -13,6 +13,7 @@ public class Map {
     public Map(int width, int height){
         this.width = width;
         this.height = height;
+        this.entities = new HashMap<>();
     }
 
     public void addEntity(Coordinates coordinates, Entity entity){
