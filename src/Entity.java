@@ -5,5 +5,5 @@ abstract public class Entity {
         this.coordinates = coordinates;
     }
 
-    protected abstract void getAppearance();
+    protected abstract String getAppearance();
 }
