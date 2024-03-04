@@ -1,3 +1,5 @@
+package com.example;
+
 abstract public class Entity {
     private Coordinates coordinates;
 
