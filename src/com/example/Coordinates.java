@@ -11,6 +11,21 @@ public class Coordinates {
         this.y = y;
     }
 
+    public Coordinates shift(CoordinatesShift shift, Map map){
+        int newX = this.x = shift.getX();
+        int newY = this.y = shift.getY();
+        if(canShift(shift, map)){
+            return new Coordinates(newX, newY);
+        }
+        return this;
+    }
+
+    public boolean canShift(CoordinatesShift shift, Map map){
+        int newX = this.x = shift.getX();
+        int newY = this.y = shift.getY();
+        return newX >= 0 && newX < map.getWidth() && newY >= 0 && newY < map.getHeight();
+    }
+
     public int getX() {
         return x;
     }
