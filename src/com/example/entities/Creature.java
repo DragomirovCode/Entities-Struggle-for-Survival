@@ -12,5 +12,5 @@ abstract public class Creature extends Entity {
 
     protected abstract void makeMove();
 
-    abstract Set<CoordinatesShift> getPossibleMoves();
+    protected abstract Set<CoordinatesShift> getPossibleMoves();
 }
