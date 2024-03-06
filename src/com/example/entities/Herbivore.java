@@ -6,6 +6,7 @@ import com.example.Map;
 
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Herbivore extends Creature{
@@ -14,7 +15,9 @@ public class Herbivore extends Creature{
     }
 
     @Override
-    protected void makeMove() {}
+    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Map map) {
+
+    }
 
     @Override
     protected Set<CoordinatesShift> getPossibleMoves() {
@@ -27,7 +30,8 @@ public class Herbivore extends Creature{
     }
 
     @Override
-    protected Coordinates searchPath(Coordinates start, Coordinates end, Map map) {
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Map map) {
+
         return null;
     }
 }
