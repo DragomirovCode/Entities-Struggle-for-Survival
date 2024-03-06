@@ -7,12 +7,24 @@ import com.example.Map;
 import java.util.*;
 
 public class Predator extends Creature{
+    private int pathCount = 1;
     public Predator(String Appearance, Coordinates coordinates) {
         super(Appearance, coordinates);
     }
 
     @Override
-    protected void makeMove() {}
+    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Map map) {
+        if (path == null || path.isEmpty() || path.size() == 1) {
+            System.out.println("Путь не найден или недействителен");
+            return;
+        }
+
+        Coordinates nextMove = path.get(pathCount);
+
+        map.updateEntityPosition(from, nextMove);
+        setCoordinates(nextMove);
+        pathCount++;
+    }
 
     @Override
     protected Set<CoordinatesShift> getPossibleMoves() {
@@ -25,7 +37,7 @@ public class Predator extends Creature{
     }
 
     @Override
-    public void searchPath(Coordinates start, Coordinates end, Map map) {
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Map map) {
         Queue<Coordinates> queue = new LinkedList<>();
         HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
         Set<Coordinates> visited = new HashSet<>();
@@ -36,7 +48,6 @@ public class Predator extends Creature{
 
         while(!queue.isEmpty()){
             Coordinates current = queue.poll();
-            System.out.println(current + " - текущяя вершина");
 
             if(current.equals(end)) {
                 break;
@@ -55,7 +66,7 @@ public class Predator extends Creature{
 
         if(!cameFrom.containsKey(end)) {
             System.out.println("Путь не найден");
-            return;
+            return null;
         }
 
         Coordinates current = end;
@@ -67,5 +78,6 @@ public class Predator extends Creature{
 
         Collections.reverse(path);
         System.out.println("Найденный путь: " + path);
+        return path;
     }
 }
