@@ -13,4 +13,6 @@ abstract public class Creature extends Entity {
     protected abstract void makeMove();
 
     protected abstract Set<CoordinatesShift> getPossibleMoves();
+
+    protected abstract Coordinates  searchPath();
 }
