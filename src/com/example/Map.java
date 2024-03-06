@@ -15,6 +15,10 @@ public class Map {
         this.entities = new HashMap<>();
     }
 
+    public boolean getAvailabilityStatusOfCoordinate(Coordinates coordinates){
+        return !entities.containsKey(coordinates);
+    }
+
     public void addEntity(Coordinates coordinates, Entity entity){
         entities.put(coordinates, entity);
     }
