@@ -12,8 +12,8 @@ public class Coordinates {
     }
 
     public Coordinates shift(CoordinatesShift shift, Map map){
-        int newX = this.x = shift.getX();
-        int newY = this.y = shift.getY();
+        int newX = this.x + shift.getX();
+        int newY = this.y + shift.getY();
         if(canShift(shift, map)){
             return new Coordinates(newX, newY);
         }
@@ -21,8 +21,8 @@ public class Coordinates {
     }
 
     public boolean canShift(CoordinatesShift shift, Map map){
-        int newX = this.x = shift.getX();
-        int newY = this.y = shift.getY();
+        int newX = this.x + shift.getX();
+        int newY = this.y + shift.getY();
         return newX >= 0 && newX < map.getWidth() && newY >= 0 && newY < map.getHeight();
     }
 
@@ -53,5 +53,13 @@ public class Coordinates {
     @Override
     public int hashCode() {
         return Objects.hash(x, y);
+    }
+
+    @Override
+    public String toString() {
+        return "Coordinates{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
     }
 }
