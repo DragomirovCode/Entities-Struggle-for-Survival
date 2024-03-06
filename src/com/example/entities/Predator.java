@@ -2,6 +2,7 @@ package com.example.entities;
 
 import com.example.Coordinates;
 import com.example.CoordinatesShift;
+import com.example.Map;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -23,5 +24,10 @@ public class Predator extends Creature{
                 new CoordinatesShift(0, -1),
                 new CoordinatesShift(0, 1)
         ));
+    }
+
+    @Override
+    protected Coordinates searchPath(Coordinates start, Coordinates end, Map map) {
+        return null;
     }
 }
