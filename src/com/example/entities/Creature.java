@@ -4,6 +4,7 @@ import com.example.Coordinates;
 import com.example.CoordinatesShift;
 import com.example.Map;
 
+import java.util.List;
 import java.util.Set;
 
 abstract public class Creature extends Entity {
@@ -11,9 +12,9 @@ abstract public class Creature extends Entity {
         super(Appearance, coordinates);
     }
 
-    protected abstract void makeMove();
+    public abstract void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Map map);
 
     protected abstract Set<CoordinatesShift> getPossibleMoves();
 
-    protected abstract Coordinates  searchPath(Coordinates start, Coordinates end, Map map);
+    public abstract List<Coordinates> searchPath(Coordinates start, Coordinates end, Map map);
 }
