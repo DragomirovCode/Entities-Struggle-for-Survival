@@ -4,12 +4,12 @@ import com.example.entities.Entity;
 
 import java.util.HashMap;
 
-public class Map {
+public class Mapping {
     private int width;
     private int height;
     private HashMap<Coordinates, Entity> entities;
 
-    public Map(int width, int height){
+    public Mapping(int width, int height){
         this.width = width;
         this.height = height;
         this.entities = new HashMap<>();

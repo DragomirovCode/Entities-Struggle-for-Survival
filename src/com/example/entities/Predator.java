@@ -2,7 +2,7 @@ package com.example.entities;
 
 import com.example.Coordinates;
 import com.example.CoordinatesShift;
-import com.example.Map;
+import com.example.Mapping;
 
 import java.util.*;
 
@@ -13,7 +13,7 @@ public class Predator extends Creature{
     }
 
     @Override
-    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Map map) {
+    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         if (path == null || path.isEmpty() || path.size() == 1) {
             System.out.println("Путь не найден или недействителен");
             return;
@@ -37,7 +37,7 @@ public class Predator extends Creature{
     }
 
     @Override
-    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Map map) {
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map) {
         Queue<Coordinates> queue = new LinkedList<>();
         HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
         Set<Coordinates> visited = new HashSet<>();

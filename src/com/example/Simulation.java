@@ -3,7 +3,7 @@ package com.example;
 import com.example.entities.Entity;
 
 public class Simulation {
-    public void renderMap(Map map){
+    public void renderMap(Mapping map){
         for (int y = 0; y < map.getHeight(); y++){
             for (int x = 0; x < map.getWidth(); x++){
                 boolean entityFound = false;

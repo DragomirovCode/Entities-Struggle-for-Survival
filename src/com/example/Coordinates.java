@@ -11,7 +11,7 @@ public class Coordinates {
         this.y = y;
     }
 
-    public Coordinates shift(CoordinatesShift shift, Map map){
+    public Coordinates shift(CoordinatesShift shift, Mapping map){
         int newX = this.x + shift.getX();
         int newY = this.y + shift.getY();
         if(canShift(shift, map)){
@@ -20,7 +20,7 @@ public class Coordinates {
         return this;
     }
 
-    public boolean canShift(CoordinatesShift shift, Map map){
+    public boolean canShift(CoordinatesShift shift, Mapping map){
         int newX = this.x + shift.getX();
         int newY = this.y + shift.getY();
         return newX >= 0 && newX < map.getWidth() && newY >= 0 && newY < map.getHeight();
