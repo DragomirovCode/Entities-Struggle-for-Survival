@@ -33,11 +33,7 @@ public class Mapping {
         this.entities = new HashMap<>();
     }
 
-    public void FillRandomPositions(){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Введи размер карты");
-        System.out.println("1-средняя, 2 - большая, 3 - стандартная");
-        String mapSize = scanner.nextLine();
+    public void FillRandomPositions(String mapSize){
         if(mapSize.equals("1")){
             while ((creatureCountPredator < 3) || (creatureCountHerbivore < 3) || (creatureCountGrass < 3) ||
                     (creatureCountRock < 3) || (creatureCountTree < 3)){
