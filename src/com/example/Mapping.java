@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.Scanner;
 
+import static com.example.Settings.predatorAppearance;
+import static com.example.Settings.herbivoreAppearance;
 
 public class Mapping {
     private Random random = new Random();
@@ -43,11 +45,11 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
                     if(creatureCountPredator < 3) {
-                        Predator newPredator = new Predator("Predator", randomCoordinates);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         getEntities().put(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else{
-                        Herbivore newHerbivore = new Herbivore("Herbivore", randomCoordinates);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates);
                         getEntities().put(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }
@@ -63,11 +65,11 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
                     if(creatureCountPredator < 4) {
-                        Predator newPredator = new Predator("Predator", randomCoordinates);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         getEntities().put(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else{
-                        Herbivore newHerbivore = new Herbivore("Herbivore", randomCoordinates);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates);
                         getEntities().put(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }
@@ -83,11 +85,11 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
                     if(creatureCountPredator < 2) {
-                        Predator newPredator = new Predator("Predator", randomCoordinates);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         getEntities().put(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else{
-                        Herbivore newHerbivore = new Herbivore("Herbivore", randomCoordinates);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates);
                         getEntities().put(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }
