@@ -135,6 +135,16 @@ public class Mapping {
         }
     }
 
+    public boolean checkSpeciesCollision(Coordinates coordinates, Entity entity){
+        if (entities.get(coordinates) instanceof Predator && entity instanceof Predator) {
+            return false;
+        }
+        if (entities.get(coordinates) instanceof Herbivore && entity instanceof Herbivore) {
+            return false;
+        }
+        return true; // В противном случае, возвращаем true
+    }
+
     public boolean getAvailabilityStatusOfCoordinate(Coordinates coordinates){
         return !entities.containsKey(coordinates);
     }
