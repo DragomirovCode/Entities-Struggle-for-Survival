@@ -9,7 +9,7 @@ public class Actions {
     public void initActions(){
         greet();
         Mapping mapping = Settings.createMap(Integer.parseInt(mapSize));
-        mapping.FillRandomPositions(mapSize);
+        mapping.fillRandomPositions(mapSize);
         simulation.renderMap(mapping);
     }
 
