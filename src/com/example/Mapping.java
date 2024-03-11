@@ -4,7 +4,6 @@ import com.example.entities.*;
 
 import java.util.HashMap;
 import java.util.Random;
-import java.util.Scanner;
 
 import static com.example.Settings.*;
 
@@ -33,7 +32,7 @@ public class Mapping {
         this.entities = new HashMap<>();
     }
 
-    public void FillRandomPositions(String mapSize){
+    public void fillRandomPositions(String mapSize){
         if(mapSize.equals("1")){
             while ((creatureCountPredator < 3) || (creatureCountHerbivore < 3) || (creatureCountGrass < 3) ||
                     (creatureCountRock < 3) || (creatureCountTree < 3)){
