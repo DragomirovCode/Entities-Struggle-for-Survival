@@ -23,4 +23,12 @@ abstract public class Entity {
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
     }
+
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "coordinates=" + coordinates +
+                ", Appearance='" + Appearance + '\'' +
+                '}';
+    }
 }
