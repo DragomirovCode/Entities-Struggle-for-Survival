@@ -7,23 +7,40 @@ import com.example.Mapping;
 import java.util.*;
 
 public class Predator extends Creature{
-    private int pathCount = 1;
+    private int pathIndex = 0;
+
     public Predator(String Appearance, Coordinates coordinates) {
         super(Appearance, coordinates);
     }
 
     @Override
     public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
-        if (path == null || path.isEmpty() || path.size() == 1) {
-            System.out.println("Путь не найден или недействителен");
+        if (path == null || path.isEmpty()) {
+            System.out.println("Путь не найден");
+            return;
+        }if(path.size() == 1){
+            System.out.println("Путь недействителен");
             return;
         }
-
-        Coordinates nextMove = path.get(pathCount);
-
+        Coordinates nextMove = path.get(pathIndex);
         map.updateEntityPosition(from, nextMove);
         setCoordinates(nextMove);
-        pathCount++;
+
+
+        if (pathIndex >= path.size() - 1) { // Проверка, достигли ли мы конца пути
+            List<Coordinates> newPath = searchPath(from, to, map, this);
+            if (newPath != null && !newPath.isEmpty()) {
+                pathIndex = 0;
+                path.clear();
+                path.addAll(newPath);
+
+            } else {
+                System.out.println("Новый путь не найден");
+                return;
+            }
+        }else {
+            pathIndex++;
+        }
     }
 
     @Override
@@ -56,8 +73,7 @@ public class Predator extends Creature{
             for(CoordinatesShift shift : getPossibleMoves()) {
                 Coordinates next = current.shift(shift, map);
                 if (next != null && !visited.contains(next)) {
-                    if (next.equals(end) || map.getAvailabilityStatusOfCoordinate(next) &&
-                            map.checkSpeciesCollision(next, entity)) {
+                    if (next.equals(end) || map.getAvailabilityStatusOfCoordinate(next)) {
                         queue.add(next);
                         visited.add(next);
                         cameFrom.put(next, current);
