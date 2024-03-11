@@ -37,7 +37,7 @@ public class Predator extends Creature{
     }
 
     @Override
-    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map) {
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map, Entity entity) {
         Queue<Coordinates> queue = new LinkedList<>();
         HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
         Set<Coordinates> visited = new HashSet<>();
@@ -55,11 +55,13 @@ public class Predator extends Creature{
 
             for(CoordinatesShift shift : getPossibleMoves()) {
                 Coordinates next = current.shift(shift, map);
-                if((next != null && (!visited.contains(next)) || (Objects.requireNonNull(next).equals(end)) &&
-                        map.getAvailabilityStatusOfCoordinate(next))) {
-                    queue.add(next);
-                    visited.add(next);
-                    cameFrom.put(next, current);
+                if (next != null && !visited.contains(next)) {
+                    if (next.equals(end) || map.getAvailabilityStatusOfCoordinate(next) &&
+                            map.checkSpeciesCollision(next, entity)) {
+                        queue.add(next);
+                        visited.add(next);
+                        cameFrom.put(next, current);
+                    }
                 }
             }
         }
