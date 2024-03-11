@@ -30,8 +30,7 @@ public class Herbivore extends Creature{
     }
 
     @Override
-    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map) {
-
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map, Entity entity) {
         return null;
     }
 }
