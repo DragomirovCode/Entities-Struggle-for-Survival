@@ -16,5 +16,5 @@ abstract public class Creature extends Entity {
 
     protected abstract Set<CoordinatesShift> getPossibleMoves();
 
-    public abstract List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map);
+    public abstract List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map, Entity entity);
 }
