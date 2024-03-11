@@ -8,7 +8,7 @@ public class Simulation {
             for (int x = 0; x < map.getWidth(); x++){
                 boolean entityFound = false;
                 for (Entity entity: map.getEntities().values()) {
-                    if(entity.getCoordinates().getX() == x && entity.getCoordinates().getY() == y ){
+                    if (entity != null && entity.getCoordinates().getX() == x && entity.getCoordinates().getY() == y) {
                         System.out.print(entity.getAppearance().charAt(0) + " ");
                         entityFound = true;
                         break;
