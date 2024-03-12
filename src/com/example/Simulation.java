@@ -5,30 +5,92 @@ import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 
 import java.util.List;
+import java.util.Scanner;
 
 public class Simulation {
     private Actions actions;
+
+    private boolean moveInProgress = false;
+    private Scanner scanner = new Scanner(System.in);
 
     public Simulation(Actions actions) {
         this.actions = actions;
     }
 
-    public void renderMap(Mapping map){
-        for (int y = 0; y < map.getHeight(); y++){
-            for (int x = 0; x < map.getWidth(); x++){
+    public void renderMap(Mapping map) {
+        for (int y = 0; y < map.getHeight(); y++) {
+            for (int x = 0; x < map.getWidth(); x++) {
                 boolean entityFound = false;
-                for (Entity entity: map.getEntities().values()) {
+                for (Entity entity : map.getEntities().values()) {
                     if (entity != null && entity.getCoordinates().getX() == x && entity.getCoordinates().getY() == y) {
                         System.out.print(entity.getAppearance().charAt(0) + " ");
                         entityFound = true;
                         break;
                     }
                 }
-                if(!entityFound){
+                if (!entityFound) {
                     System.out.print(". ");
                 }
             }
             System.out.println();
+        }
+    }
+
+    public void nextTurn() {
+        while (true) {
+            askForSingleMove();
+            if (moveInProgress) {
+
+                Mapping mapping = actions.getCurrentMap();
+
+                List<Predator> allPredators = Mapping.findAllPredators(mapping);
+                List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
+
+                for (int i = 0; i < allHerbivore.size(); i++) {
+
+                    List<Coordinates> pathPredator = allPredators.get(0).searchPath(
+                            allPredators.get(0).getCoordinates(),
+                            allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(0));
+
+                    while (true) {
+
+                        allPredators.get(0).makeMove(allPredators.get(0).getCoordinates(),
+                                allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
+
+                        renderMap(mapping);
+                        System.out.println("===");
+
+                        askForSingleMove();
+
+                        if (!moveInProgress){
+                            return;
+                        }
+
+                        if (allHerbivore.get(i).getCoordinates().equals(allPredators.get(0).getCoordinates())) {
+                            break;
+                        }
+                    }
+                }
+            }else {
+                return;
+            }
+        }
+    }
+
+    private void askForSingleMove() {
+        System.out.println("Хотите сделать один ход?");
+        System.out.println("1 - да, 2 - нет");
+        while (true) {
+            String actionChoice = scanner.nextLine();
+            if (actionChoice.equals("1")) {
+                moveInProgress = true;
+                break;
+            }else if(actionChoice.equals("2")){
+                moveInProgress = false;
+                break;
+            }else {
+                System.out.println("Пожалуйста, выберите один из предложенных вариантов");
+            }
         }
     }
 }
