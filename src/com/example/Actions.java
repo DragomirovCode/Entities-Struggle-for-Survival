@@ -3,14 +3,24 @@ package com.example;
 import java.util.Scanner;
 
 public class Actions {
+    private Simulation simulation = new Simulation(this);
+    private Mapping currentMap;
 
-    private Simulation simulation = new Simulation();
     private static String mapSize = "";
     public void initActions(){
         greet();
-        Mapping mapping = Settings.createMap(Integer.parseInt(mapSize));
-        mapping.fillRandomPositions(mapSize);
-        simulation.renderMap(mapping);
+        currentMap = Settings.createMap(Integer.parseInt(mapSize));
+        currentMap.fillRandomPositions(mapSize);
+        setCurrentMap(currentMap);
+        simulation.renderMap(currentMap);
+    }
+
+    public Mapping getCurrentMap() {
+        return currentMap;
+    }
+
+    public void setCurrentMap(Mapping currentMap) {
+        this.currentMap = currentMap;
     }
 
     private void greet(){
