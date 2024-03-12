@@ -2,7 +2,9 @@ package com.example;
 
 import com.example.entities.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 
 import static com.example.Settings.*;
@@ -133,6 +135,30 @@ public class Mapping {
                 }
             }
         }
+    }
+
+    public static List<Herbivore> findAllHerbivore(Mapping mapping) {
+        List<Herbivore> allHerbivore = new ArrayList<>();
+
+        for (Entity entity : mapping.getEntities().values()) {
+            if (entity instanceof Herbivore) {
+                allHerbivore.add((Herbivore) entity);
+            }
+        }
+
+        return allHerbivore;
+    }
+
+    public static List<Predator> findAllPredators(Mapping mapping) {
+        List<Predator> allPredators = new ArrayList<>();
+
+        for (Entity entity : mapping.getEntities().values()) {
+            if (entity instanceof Predator) {
+                allPredators.add((Predator) entity);
+            }
+        }
+
+        return allPredators;
     }
 
     public boolean checkSpeciesCollision(Coordinates coordinates, Entity entity){
