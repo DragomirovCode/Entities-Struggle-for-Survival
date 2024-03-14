@@ -15,12 +15,8 @@ public class Predator extends Creature{
 
     @Override
     public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
-        if (path == null || path.isEmpty()) {
-            System.out.println("Путь не найден");
-            return;
-        }if(path.size() == 1){
-            System.out.println("Путь недействителен");
-            return;
+        if (path == null || path.isEmpty() || pathIndex >= path.size()) {
+            findNewPath(from, to, path, map);
         }
         Coordinates nextMove = path.get(pathIndex);
         map.updateEntityPosition(from, nextMove);
@@ -28,18 +24,21 @@ public class Predator extends Creature{
 
 
         if (pathIndex >= path.size() - 1) { // Проверка, достигли ли мы конца пути
-            List<Coordinates> newPath = searchPath(from, to, map, this);
-            if (newPath != null && !newPath.isEmpty()) {
-                pathIndex = 0;
-                path.clear();
-                path.addAll(newPath);
-
-            } else {
-                System.out.println("Новый путь не найден");
-                return;
-            }
+            findNewPath(from, to, path, map);
         }else {
             pathIndex++;
+        }
+    }
+
+    private void findNewPath(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
+        List<Coordinates> newPath = searchPath(from, to, map, this);
+        if (newPath != null && !newPath.isEmpty()) {
+            pathIndex = 1;
+            path.clear();
+            path.addAll(newPath);
+
+        } else {
+            System.out.println("Новый путь не найден");
         }
     }
 
