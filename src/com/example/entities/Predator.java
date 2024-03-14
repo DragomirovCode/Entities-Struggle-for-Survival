@@ -16,15 +16,19 @@ public class Predator extends Creature{
     public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         if (path == null || path.isEmpty() || pathIndex >= path.size()) {
             findNewPath(from, to, path, map);
-        }
-        Coordinates nextMove = path.get(pathIndex);
-        map.updateEntityPosition(from, nextMove);
-        setCoordinates(nextMove);
+        } else {
+                Coordinates nextMove = path.get(pathIndex);
+                if(from.areAdjacent(from, nextMove)) {
+                    setCoordinates(nextMove);
+                    map.updateEntityPosition(from, nextMove);
+                }else{
+                    findNewPath(from, to, path, map);
+                    return;
+                }
 
-
-        if (pathIndex >= path.size() - 1) { // Проверка, достигли ли мы конца пути
-            findNewPath(from, to, path, map);
-        }else {
+            if (pathIndex >= path.size() - 1) { // Проверка, достигли ли мы конца пути
+                findNewPath(from, to, path, map);
+            }
             pathIndex++;
         }
     }
