@@ -36,7 +36,7 @@ public class Predator extends Creature{
     private void findNewPath(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         List<Coordinates> newPath = searchPath(from, to, map, this);
         if (newPath != null && !newPath.isEmpty()) {
-            pathIndex = 1;
+            pathIndex = 0;
             path.clear();
             path.addAll(newPath);
 
@@ -104,5 +104,18 @@ public class Predator extends Creature{
         Collections.reverse(path);
         System.out.println("Найденный путь: " + path);
         return path;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Predator predator = (Predator) o;
+        return pathIndex == predator.pathIndex;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pathIndex);
     }
 }
