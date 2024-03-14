@@ -4,6 +4,7 @@ import com.example.entities.Entity;
 import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -39,26 +40,32 @@ public class Simulation {
 
     public void nextTurn() {
         Mapping mapping = actions.getCurrentMap();
-        while (true) {
 
+        while(true) {
             List<Predator> allPredators = Mapping.findAllPredators(mapping);
             List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
+
+            // Создаем списки для хранения путей каждого хищника
+            List<List<Coordinates>> allPathsPredator = new ArrayList<>();
 
             for (int i = 0; i < allHerbivore.size(); i++) {
                 List<Coordinates> pathPredator = allPredators.get(i).searchPath(
                         allPredators.get(i).getCoordinates(),
                         allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(i));
-                while (true) {
-
-                    allPredators.get(i).makeMove(allPredators.get(i).getCoordinates(),
-                            allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
-                    renderMap(mapping);
-                    System.out.println("===");
-                    break;
-                }
+                allPathsPredator.add(pathPredator);
             }
+
+            // Теперь все хищники двигаются одновременно
+            for (int i = 0; i < allHerbivore.size(); i++) {
+                allPredators.get(i).makeMove(allPredators.get(i).getCoordinates(),
+                        allHerbivore.get(i).getCoordinates(), allPathsPredator.get(i), mapping);
+            }
+            renderMap(mapping);
+            System.out.println("===");
         }
+
     }
+
 
     private void askForSingleMove() {
         System.out.println("Хотите сделать один ход?");
