@@ -105,8 +105,8 @@ public class Mapping {
             while ((creatureCountPredator < 2) || (creatureCountHerbivore < 2) || (creatureCountGrass < 2) ||
                     (creatureCountRock < 2) || (creatureCountTree < 2)){
 
-                int randomCoordinatesForX = random.nextInt(5);
-                int randomCoordinatesForY = random.nextInt(5);
+                int randomCoordinatesForX = random.nextInt(8);
+                int randomCoordinatesForY = random.nextInt(8);
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
