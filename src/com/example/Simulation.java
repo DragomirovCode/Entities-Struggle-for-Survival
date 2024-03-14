@@ -36,43 +36,26 @@ public class Simulation {
         }
     }
 
+
     public void nextTurn() {
+        Mapping mapping = actions.getCurrentMap();
         while (true) {
-            askForSingleMove();
-            if (moveInProgress) {
 
-                Mapping mapping = actions.getCurrentMap();
+            List<Predator> allPredators = Mapping.findAllPredators(mapping);
+            List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
 
-                List<Predator> allPredators = Mapping.findAllPredators(mapping);
-                List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
+            for (int i = 0; i < allHerbivore.size(); i++) {
+                List<Coordinates> pathPredator = allPredators.get(i).searchPath(
+                        allPredators.get(i).getCoordinates(),
+                        allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(i));
+                while (true) {
 
-                for (int i = 0; i < allHerbivore.size(); i++) {
-
-                    List<Coordinates> pathPredator = allPredators.get(0).searchPath(
-                            allPredators.get(0).getCoordinates(),
-                            allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(0));
-
-                    while (true) {
-
-                        allPredators.get(0).makeMove(allPredators.get(0).getCoordinates(),
-                                allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
-
-                        renderMap(mapping);
-                        System.out.println("===");
-
-                        askForSingleMove();
-
-                        if (!moveInProgress){
-                            return;
-                        }
-
-                        if (allHerbivore.get(i).getCoordinates().equals(allPredators.get(0).getCoordinates())) {
-                            break;
-                        }
-                    }
+                    allPredators.get(i).makeMove(allPredators.get(i).getCoordinates(),
+                            allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
+                    renderMap(mapping);
+                    System.out.println("===");
+                    break;
                 }
-            }else {
-                return;
             }
         }
     }
