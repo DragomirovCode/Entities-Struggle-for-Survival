@@ -11,6 +11,15 @@ public class Coordinates {
         this.y = y;
     }
 
+    public boolean areAdjacent(Coordinates coord1, Coordinates coord2) {
+        int xDiff = Math.abs(coord1.getX() - coord2.getX());
+        int yDiff = Math.abs(coord1.getY() - coord2.getY());
+
+        // Координаты считаются смежными, если разница по каждой оси не превышает 1
+        return xDiff <= 1 && yDiff <= 1;
+    }
+
+
     public Coordinates shift(CoordinatesShift shift, Mapping map){
         int newX = this.x + shift.getX();
         int newY = this.y + shift.getY();
