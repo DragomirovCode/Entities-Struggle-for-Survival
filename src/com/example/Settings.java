@@ -10,11 +10,11 @@ public class Settings {
     public static Mapping createMap(int size){
         switch (size){
             case 1:
-                return new Mapping(8, 8 );
+                return new Mapping(9, 9 );
             case 2:
                 return new Mapping(10, 10);
             default:
-                return new Mapping(5, 5);
+                return new Mapping(8, 8);
         }
     }
 }
