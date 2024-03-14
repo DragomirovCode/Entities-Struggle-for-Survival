@@ -45,10 +45,14 @@ public class Predator extends Creature{
     @Override
     protected Set<CoordinatesShift> getPossibleMoves() {
         return new HashSet<>(Arrays.asList(
-                new CoordinatesShift(1, 0),
-                new CoordinatesShift(-1, 0),
-                new CoordinatesShift(0, -1),
-                new CoordinatesShift(0, 1)
+                new CoordinatesShift(1, 0),   // вправо
+                new CoordinatesShift(-1, 0),  // влево
+                new CoordinatesShift(0, -1),  // вниз
+                new CoordinatesShift(0, 1),   // вверх
+                new CoordinatesShift(1, 1),   // вверх и вправо
+                new CoordinatesShift(-1, -1), // вниз и влево
+                new CoordinatesShift(1, -1),  // вниз и вправо
+                new CoordinatesShift(-1, 1)   // вверх и влево
         ));
     }
 
