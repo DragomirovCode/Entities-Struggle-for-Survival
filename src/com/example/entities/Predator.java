@@ -13,7 +13,6 @@ public class Predator extends Creature{
         super(Appearance, coordinates);
     }
 
-    @Override
     public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         if (path == null || path.isEmpty() || pathIndex >= path.size()) {
             findNewPath(from, to, path, map);
