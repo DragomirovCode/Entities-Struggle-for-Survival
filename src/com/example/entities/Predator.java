@@ -91,7 +91,7 @@ public class Predator extends Creature{
         }
 
         if(!cameFrom.containsKey(end)) {
-            System.out.println("Путь не найден");
+            //   System.out.println("Путь не найден");
             return null;
         }
 
@@ -103,7 +103,7 @@ public class Predator extends Creature{
         }
 
         Collections.reverse(path);
-        System.out.println("Найденный путь: " + path);
+        // System.out.println("Найденный путь: " + path);
         return path;
     }
 
