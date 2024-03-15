@@ -13,12 +13,12 @@ public class Predator extends Creature{
         super(Appearance, coordinates);
     }
 
-    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
+    public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map, Entity entity) {
         if (path == null || path.isEmpty() || pathIndex >= path.size()) {
             findNewPath(from, to, path, map);
         } else {
                 Coordinates nextMove = path.get(pathIndex);
-                if(from.areAdjacent(from, nextMove)) {
+                if(from.areAdjacent(from, nextMove) && map.checkSpeciesCollision(nextMove, entity)) {
                     map.updateEntityPosition(from, nextMove);
                     setCoordinates(nextMove);
                     pathIndex++;
@@ -35,7 +35,7 @@ public class Predator extends Creature{
     }
 
     private void findNewPath(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
-        List<Coordinates> newPath = searchPath(from, to, map, this);
+        List<Coordinates> newPath = searchPath(from, to, map);
         if (newPath != null && !newPath.isEmpty()) {
             pathIndex = 1;
             path.clear();
@@ -61,7 +61,7 @@ public class Predator extends Creature{
     }
 
     @Override
-    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map, Entity entity) {
+    public List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map) {
         Queue<Coordinates> queue = new LinkedList<>();
         HashMap<Coordinates, Coordinates> cameFrom = new HashMap<>();
         Set<Coordinates> visited = new HashSet<>();
@@ -80,8 +80,7 @@ public class Predator extends Creature{
             for(CoordinatesShift shift : getPossibleMoves()) {
                 Coordinates next = current.shift(shift, map);
                 if (next != null && !visited.contains(next)) {
-                    if (next.equals(end) || map.getAvailabilityStatusOfCoordinate(next) &&
-                            map.checkSpeciesCollision(next, entity)) {
+                    if (next.equals(end) || map.getAvailabilityStatusOfCoordinate(next)) {
                         queue.add(next);
                         visited.add(next);
                         cameFrom.put(next, current);

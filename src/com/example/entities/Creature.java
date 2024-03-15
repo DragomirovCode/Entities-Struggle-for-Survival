@@ -12,9 +12,9 @@ abstract public class Creature extends Entity {
         super(Appearance, coordinates);
     }
 
-    public abstract void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map);
+    public abstract void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map, Entity entity);
 
     protected abstract Set<CoordinatesShift> getPossibleMoves();
 
-    public abstract List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map, Entity entity);
+    public abstract List<Coordinates> searchPath(Coordinates start, Coordinates end, Mapping map);
 }

@@ -48,10 +48,10 @@ public class Simulation {
                 Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
                 if (closestHerbivore != null) {
                     List<Coordinates> path = predator.searchPath(predator.getCoordinates(),
-                            closestHerbivore.getCoordinates(), mapping, predator);
+                            closestHerbivore.getCoordinates(), mapping);
                     Coordinates oldCoordinates = predator.getCoordinates();
                     predator.makeMove(predator.getCoordinates(), closestHerbivore.getCoordinates(),
-                            path, mapping);
+                            path, mapping, predator);
                     Coordinates newCoordinates = predator.getCoordinates();
                     if(!oldCoordinates.equals(newCoordinates)) {
                         Thread.sleep(Actions.speed);
