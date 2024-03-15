@@ -4,9 +4,7 @@ import com.example.entities.Entity;
 import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Simulation {
     private Actions actions;
