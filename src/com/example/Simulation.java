@@ -41,30 +41,39 @@ public class Simulation {
     public void nextTurn() {
         Mapping mapping = actions.getCurrentMap();
 
-        while(true) {
+        while (true) {
+
             List<Predator> allPredators = Mapping.findAllPredators(mapping);
             List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
 
-            // Создаем списки для хранения путей каждого хищника
-            List<List<Coordinates>> allPathsPredator = new ArrayList<>();
-
             for (int i = 0; i < allHerbivore.size(); i++) {
-                List<Coordinates> pathPredator = allPredators.get(i).searchPath(
-                        allPredators.get(i).getCoordinates(),
-                        allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(i));
-                allPathsPredator.add(pathPredator);
-            }
+                while (true) {
+                    List<Coordinates> pathPredator = allPredators.get(i).searchPath(
+                            allPredators.get(i).getCoordinates(),
+                            allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(i));
 
-            // Теперь все хищники двигаются одновременно
-            for (int i = 0; i < allHerbivore.size(); i++) {
-                allPredators.get(i).makeMove(allPredators.get(i).getCoordinates(),
-                        allHerbivore.get(i).getCoordinates(), allPathsPredator.get(i), mapping);
+                    Coordinates oldCoordinates = allPredators.get(i).getCoordinates();
+
+                    allPredators.get(i).makeMove(oldCoordinates,
+                            allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
+
+                    Coordinates newCoordinates = allPredators.get(i).getCoordinates();
+
+                    if (!oldCoordinates.equals(newCoordinates)) {
+                        renderMap(mapping);
+                        System.out.println("===");
+                    }else{
+                        break;
+                    }
+
+                }
             }
-            renderMap(mapping);
-            System.out.println("===");
+            if(allHerbivore.isEmpty()){
+                break;
+            }
         }
-
     }
+
 
 
     private void askForSingleMove() {
