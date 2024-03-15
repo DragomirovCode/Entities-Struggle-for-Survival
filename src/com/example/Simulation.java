@@ -54,9 +54,9 @@ public class Simulation {
                             path, mapping, predator);
                     Coordinates newCoordinates = predator.getCoordinates();
                     if(!oldCoordinates.equals(newCoordinates)) {
-                        Thread.sleep(Actions.speed);
                         renderMap(mapping);
                         System.out.println("===");
+                        Thread.sleep(Actions.speed);
                     }
                 }
 
