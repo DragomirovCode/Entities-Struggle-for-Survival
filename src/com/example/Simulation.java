@@ -69,6 +69,20 @@ public class Simulation {
     }
 
 
+    private Herbivore findClosestHerbivore(Predator predator, List<Herbivore> herbivores) {
+        int minDistance = Integer.MAX_VALUE;
+        Herbivore closestHerbivore = null;
+        for (Herbivore herbivore : herbivores) {
+            int distance = Coordinates.calculateDistance(predator.getCoordinates(), herbivore.getCoordinates());
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestHerbivore = herbivore;
+            }
+        }
+        return closestHerbivore;
+    }
+
+
 
     private void askForSingleMove() {
         System.out.println("Хотите сделать один ход?");
