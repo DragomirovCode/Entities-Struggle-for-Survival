@@ -11,6 +11,17 @@ public class Coordinates {
         this.y = y;
     }
 
+    public static int calculateDistance(Coordinates c1, Coordinates c2) {
+        int x1 = c1.getX();
+        int y1 = c1.getY();
+        int x2 = c2.getX();
+        int y2 = c2.getY();
+
+        // Используем формулу расстояния между двумя точками (x1, y1) и (x2, y2):
+        // sqrt((x2 - x1)^2 + (y2 - y1)^2)
+
+        return (int) Math.sqrt(Math.pow(x2 - x1, 2) + Math.pow(y2 - y1, 2));
+    }
     public boolean areAdjacent(Coordinates coord1, Coordinates coord2) {
         int xDiff = Math.abs(coord1.getX() - coord2.getX());
         int yDiff = Math.abs(coord1.getY() - coord2.getY());
