@@ -36,7 +36,7 @@ public class Simulation {
     }
 
 
-    public void startSimulation() {
+    public void startSimulation() throws InterruptedException {
         Mapping mapping = actions.getCurrentMap();
 
         while(true) {
@@ -54,6 +54,7 @@ public class Simulation {
                             path, mapping);
                     Coordinates newCoordinates = predator.getCoordinates();
                     if(!oldCoordinates.equals(newCoordinates)) {
+                        Thread.sleep(Actions.speed);
                         renderMap(mapping);
                         System.out.println("===");
                     }
