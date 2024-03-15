@@ -7,7 +7,7 @@ import com.example.Mapping;
 import java.util.*;
 
 public class Predator extends Creature{
-    private int pathIndex = 0;
+    private int pathIndex = 1;
 
     public Predator(String Appearance, Coordinates coordinates) {
         super(Appearance, coordinates);
@@ -37,7 +37,7 @@ public class Predator extends Creature{
     private void findNewPath(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         List<Coordinates> newPath = searchPath(from, to, map, this);
         if (newPath != null && !newPath.isEmpty()) {
-            pathIndex = 0;
+            pathIndex = 1;
             path.clear();
             path.addAll(newPath);
 
