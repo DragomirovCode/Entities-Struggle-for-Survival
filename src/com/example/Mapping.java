@@ -44,7 +44,7 @@ public class Mapping {
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
-                if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
+                if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 3) {
                         Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         addEntity(newPredator.getCoordinates(), newPredator);
@@ -77,7 +77,7 @@ public class Mapping {
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
-                if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
+                if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 4) {
                         Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         addEntity(newPredator.getCoordinates(), newPredator);
@@ -110,7 +110,7 @@ public class Mapping {
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
-                if(getAvailabilityStatusOfCoordinate(randomCoordinates)){
+                if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 2) {
                         Predator newPredator = new Predator(predatorAppearance, randomCoordinates);
                         addEntity(newPredator.getCoordinates(), newPredator);
@@ -135,6 +135,49 @@ public class Mapping {
                 }
             }
         }
+    }
+
+
+    private boolean isFarEnough(Coordinates newCoordinates) {
+        for (Entity entity : entities.values()) {
+            int minDistance = 2;
+            if (entity instanceof Predator) {
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
+            if(entity instanceof Herbivore){
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
+            if(entity instanceof  Grass){
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
+            if(entity instanceof Rock){
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
+            if(entity instanceof Tree){
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public static List<Herbivore> findAllHerbivore(Mapping mapping) {
