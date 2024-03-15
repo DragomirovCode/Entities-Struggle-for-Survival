@@ -22,11 +22,11 @@ public class Settings {
         int speed = 0;
         switch (input){
             case 1:
-                speed = 1500;
+                speed = 1000;
             case 2:
-                speed = 2500;
+                speed = 1500;
             default:
-                speed = 3000;
+                speed = 2500;
         }
         return speed;
     }
