@@ -41,32 +41,26 @@ public class Simulation {
     public void nextTurn() {
         Mapping mapping = actions.getCurrentMap();
 
-        while (true) {
+        while(true) {
 
             List<Predator> allPredators = Mapping.findAllPredators(mapping);
             List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
 
-            for (int i = 0; i < allHerbivore.size(); i++) {
-                while (true) {
-                    List<Coordinates> pathPredator = allPredators.get(i).searchPath(
-                            allPredators.get(i).getCoordinates(),
-                            allHerbivore.get(i).getCoordinates(), mapping, allPredators.get(i));
-
-                    Coordinates oldCoordinates = allPredators.get(i).getCoordinates();
-
-                    allPredators.get(i).makeMove(oldCoordinates,
-                            allHerbivore.get(i).getCoordinates(), pathPredator, mapping);
-
-                    Coordinates newCoordinates = allPredators.get(i).getCoordinates();
-
-                    if (!oldCoordinates.equals(newCoordinates)) {
+            for (Predator predator : allPredators) {
+                Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
+                if (closestHerbivore != null) {
+                    List<Coordinates> path = predator.searchPath(predator.getCoordinates(),
+                            closestHerbivore.getCoordinates(), mapping, predator);
+                    Coordinates oldCoordinates = predator.getCoordinates();
+                    predator.makeMove(predator.getCoordinates(), closestHerbivore.getCoordinates(),
+                            path, mapping);
+                    Coordinates newCoordinates = predator.getCoordinates();
+                    if(!oldCoordinates.equals(newCoordinates)) {
                         renderMap(mapping);
                         System.out.println("===");
-                    }else{
-                        break;
                     }
-
                 }
+
             }
             if(allHerbivore.isEmpty()){
                 break;
