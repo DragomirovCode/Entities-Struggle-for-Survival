@@ -17,4 +17,17 @@ public class Settings {
                 return new Mapping(8, 8);
         }
     }
+
+    public static int calculateSpeed(int input){
+        int speed = 0;
+        switch (input){
+            case 1:
+                speed = 1500;
+            case 2:
+                speed = 2500;
+            default:
+                speed = 3000;
+        }
+        return speed;
+    }
 }
