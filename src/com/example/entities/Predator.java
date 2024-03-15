@@ -19,17 +19,18 @@ public class Predator extends Creature{
         } else {
                 Coordinates nextMove = path.get(pathIndex);
                 if(from.areAdjacent(from, nextMove)) {
-                    setCoordinates(nextMove);
                     map.updateEntityPosition(from, nextMove);
-                }else{
+                    setCoordinates(nextMove);
+                    pathIndex++;
+                }else {
+                    // Если текущая цель стала недоступной, найти новую цель
                     findNewPath(from, to, path, map);
                     return;
                 }
 
-            if (pathIndex >= path.size() - 1) { // Проверка, достигли ли мы конца пути
+            if (pathIndex >= path.size() - 1) {
                 findNewPath(from, to, path, map);
             }
-            pathIndex++;
         }
     }
 
