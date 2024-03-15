@@ -18,7 +18,6 @@ public class Actions {
         currentMap.fillRandomPositions(mapSize);
         speed = Settings.calculateSpeed(Integer.parseInt(speedSize));
         setCurrentMap(currentMap);
-        simulation.renderMap(currentMap);
     }
 
     public Mapping getCurrentMap() {
