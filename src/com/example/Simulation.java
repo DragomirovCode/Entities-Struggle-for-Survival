@@ -36,7 +36,7 @@ public class Simulation {
     }
 
 
-    public void nextTurn() {
+    public void startSimulation() {
         Mapping mapping = actions.getCurrentMap();
 
         while(true) {
