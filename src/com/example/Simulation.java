@@ -93,6 +93,71 @@ public class Simulation {
 
         }
     }
+    
+    public void nextTurn() {
+        Mapping mapping = actions.getCurrentMap();
+        boolean predatorMove = true;
+        while (true) {
+            List<Predator> allPredators = Mapping.findAllPredators(mapping);
+            List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
+            List<Grass> allGrasses = Mapping.findAllGrasses(mapping);
+            if (predatorMove) {
+                for (Predator predator : allPredators) {
+                    Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
+                    if (closestHerbivore != null) {
+                        List<Coordinates> pathPredator = predator.searchPath(
+                                predator.getCoordinates(), closestHerbivore.getCoordinates(), mapping
+                        );
+                        Coordinates oldCoordinatesPredator = predator.getCoordinates();
+                        predator.makeMove(
+                                predator.getCoordinates(), closestHerbivore.getCoordinates(), pathPredator,
+                                mapping, predator
+                        );
+                        Coordinates newCoordinatesPredator = predator.getCoordinates();
+                        if (!oldCoordinatesPredator.equals(newCoordinatesPredator)) {
+                            askForSingleMove();
+                            if (!moveInProgress) {
+                                return;
+                            }
+                            moveInProgress = false;
+                            renderMap(mapping);
+                            System.out.println("===");
+                            break;
+                        }
+                    }
+                }
+            } else {
+                for (Herbivore herbivore : allHerbivore) {
+                    Grass closestGrass = findClosestGrass(herbivore, allGrasses);
+                    if (closestGrass != null) {
+                        List<Coordinates> pathHerbivore = herbivore.searchPath(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(), mapping
+                        );
+                        Coordinates oldCoordinatesHerbivore = herbivore.getCoordinates();
+                        herbivore.makeMove(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(),
+                                pathHerbivore, mapping, herbivore
+                        );
+                        Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
+                        if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
+                            askForSingleMove();
+                            if (!moveInProgress) {
+                                return;
+                            }
+                            moveInProgress = false;
+                            renderMap(mapping);
+                            System.out.println("===");
+                            break;
+                        }
+                    }
+                }
+            }
+            predatorMove = !predatorMove;
+            if (allHerbivore.isEmpty()) {
+                break;
+            }
+        }
+    }
 
     private Herbivore findClosestHerbivore(Predator predator, List<Herbivore> herbivores) {
         int minDistance = Integer.MAX_VALUE;
