@@ -7,6 +7,8 @@ abstract public class Entity {
 
     private String Appearance;
 
+    private int HP;
+
     public Entity(String Appearance, Coordinates coordinates){
         this.coordinates = coordinates;
         this.Appearance = Appearance;
@@ -22,6 +24,14 @@ abstract public class Entity {
 
     public void setCoordinates(Coordinates coordinates) {
         this.coordinates = coordinates;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int HP) {
+        this.HP = HP;
     }
 
     @Override
