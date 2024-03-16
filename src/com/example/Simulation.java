@@ -1,6 +1,7 @@
 package com.example;
 
 import com.example.entities.Entity;
+import com.example.entities.Grass;
 import com.example.entities.Herbivore;
 import com.example.entities.Predator;
 
@@ -35,38 +36,62 @@ public class Simulation {
         }
     }
 
-
     public void startSimulation() throws InterruptedException {
         Mapping mapping = actions.getCurrentMap();
-
+        boolean predatorMove = true;
         while(true) {
+                List<Predator> allPredators = Mapping.findAllPredators(mapping);
+                List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
+                List<Grass> allGrasses = Mapping.findAllGrasses(mapping);
+            if (predatorMove) {
+                for (Predator predator : allPredators) {
+                    Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
+                    if (closestHerbivore != null) {
+                        List<Coordinates> path = predator.searchPath(
+                                predator.getCoordinates(), closestHerbivore.getCoordinates(), mapping
+                        );
+                        Coordinates oldCoordinates = predator.getCoordinates();
+                        predator.makeMove(predator.getCoordinates(), closestHerbivore.getCoordinates(),
+                                path, mapping, predator);
+                        Coordinates newCoordinates = predator.getCoordinates();
+                        if (!oldCoordinates.equals(newCoordinates)) {
+                            renderMap(mapping);
+                            System.out.println("===");
+                            Thread.sleep(Actions.speed);
+                            break;
+                        }
+                    }
 
-            List<Predator> allPredators = Mapping.findAllPredators(mapping);
-            List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
-
-            for (Predator predator : allPredators) {
-                Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
-                if (closestHerbivore != null) {
-                    List<Coordinates> path = predator.searchPath(predator.getCoordinates(),
-                            closestHerbivore.getCoordinates(), mapping);
-                    Coordinates oldCoordinates = predator.getCoordinates();
-                    predator.makeMove(predator.getCoordinates(), closestHerbivore.getCoordinates(),
-                            path, mapping, predator);
-                    Coordinates newCoordinates = predator.getCoordinates();
-                    if(!oldCoordinates.equals(newCoordinates)) {
-                        renderMap(mapping);
-                        System.out.println("===");
-                        Thread.sleep(Actions.speed);
+                }
+            }else {
+                for (Herbivore herbivore : allHerbivore) {
+                    Grass closestGrass = findClosestGrass(herbivore, allGrasses);
+                    if (closestGrass != null) {
+                        List<Coordinates> allPathHerbivores = herbivore.searchPath(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(), mapping
+                        );
+                        Coordinates oldCoordinatesHerbivore = herbivore.getCoordinates();
+                        herbivore.makeMove(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(),
+                                allPathHerbivores, mapping, herbivore
+                        );
+                        Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
+                        if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
+                            renderMap(mapping);
+                            System.out.println("===");
+                            Thread.sleep(Actions.speed);
+                            break;
+                        }
                     }
                 }
-
             }
-            if(allHerbivore.isEmpty()){
+            predatorMove = !predatorMove;
+            if (allHerbivore.isEmpty()) {
                 break;
             }
+
         }
     }
-
 
     private Herbivore findClosestHerbivore(Predator predator, List<Herbivore> herbivores) {
         int minDistance = Integer.MAX_VALUE;
