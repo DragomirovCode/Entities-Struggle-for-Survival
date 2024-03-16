@@ -106,7 +106,18 @@ public class Simulation {
         return closestHerbivore;
     }
 
-
+    private Grass findClosestGrass(Herbivore herbivore, List<Grass> grasses) {
+        int minDistance = Integer.MAX_VALUE;
+        Grass closestGrass = null;
+        for (Grass grass : grasses) {
+            int distance = Coordinates.calculateDistance(herbivore.getCoordinates(), grass.getCoordinates());
+            if (distance < minDistance) {
+                minDistance = distance;
+                closestGrass = grass;
+            }
+        }
+        return closestGrass;
+    }
 
     private void askForSingleMove() {
         System.out.println("Хотите сделать один ход?");
