@@ -7,6 +7,12 @@ public class Settings {
     public static String rockAppearance = "R";
     public static String treeAppearance = "T";
 
+    public int PredatorHP = 0;
+    public int HerbivoreHP = 1;
+    public int GrassHP = 1;
+    public int RockHP = 0;
+    public int TreeHP = 0;
+
     public static Mapping createMap(int size){
         switch (size){
             case 1:
