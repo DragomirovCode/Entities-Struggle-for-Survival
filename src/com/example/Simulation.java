@@ -47,14 +47,15 @@ public class Simulation {
                 for (Predator predator : allPredators) {
                     Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
                     if (closestHerbivore != null) {
-                        List<Coordinates> path = predator.searchPath(
+                        List<Coordinates> pathPredator = predator.searchPath(
                                 predator.getCoordinates(), closestHerbivore.getCoordinates(), mapping
                         );
-                        Coordinates oldCoordinates = predator.getCoordinates();
-                        predator.makeMove(predator.getCoordinates(), closestHerbivore.getCoordinates(),
-                                path, mapping, predator);
-                        Coordinates newCoordinates = predator.getCoordinates();
-                        if (!oldCoordinates.equals(newCoordinates)) {
+                        Coordinates oldCoordinatesPredator = predator.getCoordinates();
+                        predator.makeMove(
+                                predator.getCoordinates(), closestHerbivore.getCoordinates(), pathPredator, mapping, predator
+                        );
+                        Coordinates newCoordinatesPredator = predator.getCoordinates();
+                        if (!oldCoordinatesPredator.equals(newCoordinatesPredator)) {
                             renderMap(mapping);
                             System.out.println("===");
                             Thread.sleep(Actions.speed);
@@ -67,13 +68,13 @@ public class Simulation {
                 for (Herbivore herbivore : allHerbivore) {
                     Grass closestGrass = findClosestGrass(herbivore, allGrasses);
                     if (closestGrass != null) {
-                        List<Coordinates> allPathHerbivores = herbivore.searchPath(
+                        List<Coordinates> pathHerbivore = herbivore.searchPath(
                                 herbivore.getCoordinates(), closestGrass.getCoordinates(), mapping
                         );
                         Coordinates oldCoordinatesHerbivore = herbivore.getCoordinates();
                         herbivore.makeMove(
                                 herbivore.getCoordinates(), closestGrass.getCoordinates(),
-                                allPathHerbivores, mapping, herbivore
+                                pathHerbivore, mapping, herbivore
                         );
                         Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
                         if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
