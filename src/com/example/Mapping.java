@@ -225,6 +225,25 @@ public class Mapping {
         return true; // В противном случае, возвращаем true
     }
 
+    public boolean determineTargetAtNextCoordinates(Coordinates next, Entity entity){
+        if (entities.get(next) instanceof Herbivore && entity instanceof Predator){
+            return true;
+        }
+        if (entities.get(next) instanceof Grass && entity instanceof Herbivore){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean hp(Coordinates next){
+        if (entities.get(next).getHP() == 0){
+            return true;
+        }else {
+            entities.get(next).setHP(entities.get(next).getHP() - 1);
+        }
+        return false;
+    }
+
     public boolean getAvailabilityStatusOfCoordinate(Coordinates coordinates){
         return !entities.containsKey(coordinates);
     }
