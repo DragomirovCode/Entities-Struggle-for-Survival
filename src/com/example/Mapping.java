@@ -204,6 +204,17 @@ public class Mapping {
         return allPredators;
     }
 
+    public static List<Grass> findAllGrasses(Mapping mapping){
+        List<Grass> allGrasses = new ArrayList<>();
+
+        for (Entity entity: mapping.getEntities().values()){
+            if(entity instanceof Grass){
+                allGrasses.add((Grass) entity);
+            }
+        }
+        return allGrasses;
+    }
+
     public boolean checkSpeciesCollision(Coordinates coordinates, Entity entity){
         if (entities.get(coordinates) instanceof Predator && entity instanceof Predator) {
             return false;
