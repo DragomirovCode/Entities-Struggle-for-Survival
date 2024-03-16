@@ -1,6 +1,5 @@
 package com.example.entities;
 
-import com.example.AbstractAnimal;
 import com.example.Coordinates;
 
 public class Herbivore extends AbstractAnimal {

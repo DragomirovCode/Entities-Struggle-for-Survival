@@ -1,7 +1,8 @@
-package com.example;
+package com.example.entities;
 
-import com.example.entities.Creature;
-import com.example.entities.Entity;
+import com.example.Coordinates;
+import com.example.CoordinatesShift;
+import com.example.Mapping;
 
 import java.util.*;
 
