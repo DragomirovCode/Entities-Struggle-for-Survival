@@ -9,8 +9,9 @@ import java.util.*;
 public class AbstractAnimal extends Creature {
 
     private int pathIndex = 1;
-    public AbstractAnimal(String Appearance, Coordinates coordinates) {
-        super(Appearance, coordinates);
+
+    public AbstractAnimal(String Appearance, Coordinates coordinates, int HP) {
+        super(Appearance, coordinates, HP);
     }
 
     @Override

@@ -9,7 +9,8 @@ abstract public class Entity {
 
     private int HP;
 
-    public Entity(String Appearance, Coordinates coordinates){
+    public Entity(String Appearance, Coordinates coordinates, int HP){
+        this.HP = HP;
         this.coordinates = coordinates;
         this.Appearance = Appearance;
     }

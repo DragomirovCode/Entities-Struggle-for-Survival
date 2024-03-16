@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Set;
 
 abstract public class Creature extends Entity {
-    public Creature(String Appearance, Coordinates coordinates) {
-        super(Appearance, coordinates);
+    public Creature(String Appearance, Coordinates coordinates, int HP) {
+        super(Appearance, coordinates, HP);
     }
 
     public abstract void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map, Entity entity);
