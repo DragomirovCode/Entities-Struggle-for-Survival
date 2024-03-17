@@ -22,11 +22,26 @@ public class AbstractAnimal extends Creature {
             Coordinates nextMove = path.get(pathIndex);
             if(from.areAdjacent(from, nextMove) && map.checkSpeciesCollision(nextMove, entity)) {
                 if (map.determineTargetAtNextCoordinates(nextMove, entity) && map.getEntities().get(nextMove).getHP() > 1){
+                    System.out.println(entity.getAppearance() + " перемещается с "
+                            + map.getEntities().get(from).getCoordinates() + " в " + nextMove + " и атакует "
+                            + map.getEntities().get(nextMove).getAppearance()
+                            + " на координатах " + map.getEntities().get(nextMove).getCoordinates()
+                            + " с " + map.getEntities().get(nextMove).getHP() + " ХП");
                     map.getEntities().get(nextMove).setHP(getHP() - 1);
                 }
                 else if (map.getAvailabilityStatusOfCoordinate(nextMove) &&
                         !map.determineTargetAtNextCoordinates(nextMove, entity) ||
                         !map.getAvailabilityStatusOfCoordinate(nextMove) && map.getEntities().get(nextMove).getHP() == 1) {
+                    if(map.getEntities().get(nextMove) != null) {
+                        System.out.println(entity.getAppearance() + " перемещается с "
+                                + map.getEntities().get(from).getCoordinates() + " в " + nextMove + " и съедает "
+                                + map.getEntities().get(nextMove).getAppearance() + " на координатах "
+                                + map.getEntities().get(nextMove).getCoordinates() + " с "
+                                + map.getEntities().get(nextMove).getHP() + " ХП");
+                    }else {
+                        System.out.println(entity.getAppearance() + " перемещается с "
+                                + map.getEntities().get(from).getCoordinates() + " в " + nextMove);
+                    }
                     map.updateEntityPosition(from, nextMove);
                     setCoordinates(nextMove);
                     pathIndex++;
