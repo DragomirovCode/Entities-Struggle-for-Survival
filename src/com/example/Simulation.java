@@ -116,12 +116,14 @@ public class Simulation {
                         Coordinates newCoordinatesPredator = predator.getCoordinates();
                         if (!oldCoordinatesPredator.equals(newCoordinatesPredator)) {
                             askForSingleMove();
+                            System.out.println("===Визуализация прошлых координат===");
+                            renderMap(mapping);
+                            System.out.println();
+                            System.out.println("Координаты следующего хода: ");
+                            System.out.println();
                             if (!moveInProgress) {
                                 return;
                             }
-                            moveInProgress = false;
-                            renderMap(mapping);
-                            System.out.println("===");
                             break;
                         }
                     }
@@ -141,12 +143,14 @@ public class Simulation {
                         Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
                         if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
                             askForSingleMove();
+                            System.out.println("===Визуализация прошлого хода===");
+                            renderMap(mapping);
+                            System.out.println();
+                            System.out.println("Координаты следующего хода: ");
+                            System.out.println();
                             if (!moveInProgress) {
                                 return;
                             }
-                            moveInProgress = false;
-                            renderMap(mapping);
-                            System.out.println("===");
                             break;
                         }
                     }
@@ -186,6 +190,8 @@ public class Simulation {
     }
 
     private void askForSingleMove() {
+        moveInProgress = false;
+        System.out.println();
         System.out.println("Хотите сделать ещё один ход?");
         System.out.println("1 - да, 2 - нет");
         while (true) {
