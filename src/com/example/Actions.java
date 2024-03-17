@@ -36,8 +36,8 @@ public class Actions {
     }
 
     private void greet(){
-        System.out.println("Привет! Выбери размер карты");
-        System.out.println("1 - средней, 2 - большой, 3 - стандартный");
+        System.out.println("Здравствуйте! Выберите размер карты: ");
+        System.out.println("1 - средняя, 2 - большая, 3 - стандартная");
         while(true){
             mapSize = scanner.nextLine();
             switch (mapSize) {
@@ -51,7 +51,7 @@ public class Actions {
     }
 
     private void chooseMovementForCreature() throws InterruptedException {
-        System.out.println("Выберите режим передвижения существ");
+        System.out.println("Выберите режим перемещения: ");
         System.out.println("1 - запустить цикл автоматического перемещения, 2 - одноразовое перемещение");
         while (true){
             creatureMovementMode = scanner.nextLine();
@@ -69,8 +69,8 @@ public class Actions {
         }
     }
     private void requestSpeedFromUser(){
-        System.out.println("Выбери скорость существам");
-        System.out.println("1 - стандартная, 2 - средняя, 3 - медлинная");
+        System.out.println("Выберите скорость перемещения: ");
+        System.out.println("1 - стандартная, 2 - замедлинная, 3 - медлинная");
         while(true){
             speedSize = scanner.nextLine();
             switch (speedSize) {

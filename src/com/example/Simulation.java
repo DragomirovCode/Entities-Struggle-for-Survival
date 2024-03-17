@@ -186,7 +186,7 @@ public class Simulation {
     }
 
     private void askForSingleMove() {
-        System.out.println("Хотите сделать один ход?");
+        System.out.println("Хотите сделать ещё один ход?");
         System.out.println("1 - да, 2 - нет");
         while (true) {
             String actionChoice = scanner.nextLine();
