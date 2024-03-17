@@ -21,23 +21,21 @@ public class AbstractAnimal extends Creature {
         } else {
             Coordinates nextMove = path.get(pathIndex);
             if(from.areAdjacent(from, nextMove) && map.checkSpeciesCollision(nextMove, entity)) {
-                if (map.determineTargetAtNextCoordinates(nextMove, entity)){
-                    map.hp(nextMove);
+                if (map.determineTargetAtNextCoordinates(nextMove, entity) && map.getEntities().get(nextMove).getHP() > 1){
+                    map.getEntities().get(nextMove).setHP(getHP() - 1);
                 }
-                if (map.getAvailabilityStatusOfCoordinate(nextMove) &&
+                else if (map.getAvailabilityStatusOfCoordinate(nextMove) &&
                         !map.determineTargetAtNextCoordinates(nextMove, entity) ||
-                        !map.getAvailabilityStatusOfCoordinate(nextMove) && map.hp(nextMove)) {
+                        !map.getAvailabilityStatusOfCoordinate(nextMove) && map.getEntities().get(nextMove).getHP() == 1) {
                     map.updateEntityPosition(from, nextMove);
                     setCoordinates(nextMove);
                     pathIndex++;
-                    System.out.println(entity + " " + map.hp(nextMove) + " " + nextMove.getX());
                 }
             }else {
                 // Если текущая цель стала недоступной, найти новую цель
                 findNewPath(from, to, path, map);
                 return;
             }
-
             if (pathIndex >= path.size() - 1) {
                 findNewPath(from, to, path, map);
             }
