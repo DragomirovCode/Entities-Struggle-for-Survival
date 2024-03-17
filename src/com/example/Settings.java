@@ -7,9 +7,9 @@ public class Settings {
     public static String rockAppearance = "R";
     public static String treeAppearance = "T";
 
-    public int PredatorHP = 0;
-    public int HerbivoreHP = 1;
-    public int GrassHP = 1;
+    public int PredatorHP = 2;
+    public int HerbivoreHP = 2;
+    public int GrassHP = 2;
     public int RockHP = 0;
     public int TreeHP = 0;
 
