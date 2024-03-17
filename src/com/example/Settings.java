@@ -14,29 +14,18 @@ public class Settings {
     public int TreeHP = 0;
 
     public static Mapping createMap(int size){
-        switch (size){
-            case 1:
-                return new Mapping(9, 9 );
-            case 2:
-                return new Mapping(10, 10);
-            default:
-                return new Mapping(8, 8);
-        }
+        return switch (size) {
+            case 1 -> new Mapping(9, 9);
+            case 2 -> new Mapping(10, 10);
+            default -> new Mapping(8, 8);
+        };
     }
 
     public static int calculateSpeed(int input){
-        int speed = 0;
-        switch (input){
-            case 1:
-                speed = 1000;
-                break;
-            case 2:
-                speed = 1500;
-                break;
-            default:
-                speed = 2500;
-                break;
-        }
-        return speed;
+        return switch (input) {
+            case 1 -> 1000;
+            case 2 -> 1500;
+            default -> 2500;
+        };
     }
 }
