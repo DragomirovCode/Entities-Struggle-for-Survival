@@ -5,7 +5,6 @@ import java.util.Objects;
 public class CoordinatesShift {
     private int x;
     private int y;
-
     public CoordinatesShift(int x, int y) {
         this.x = x;
         this.y = y;

@@ -6,13 +6,10 @@ public class Actions {
     private Scanner scanner = new Scanner(System.in);;
     private Simulation simulation;
     private Mapping currentMap;
-
     public static int speed;
-
     private static String mapSize = "";
     public static String speedSize = "";
     public static String creatureMovementMode = "";
-
     public Actions(){
         this.simulation = new Simulation(this);
     }

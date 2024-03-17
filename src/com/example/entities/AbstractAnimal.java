@@ -7,9 +7,7 @@ import com.example.Mapping;
 import java.util.*;
 
 public class AbstractAnimal extends Creature {
-
     private int pathIndex = 1;
-
     public AbstractAnimal(String Appearance, Coordinates coordinates, int HP) {
         super(Appearance, coordinates, HP);
     }

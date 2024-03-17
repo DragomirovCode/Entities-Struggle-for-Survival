@@ -4,11 +4,8 @@ import com.example.Coordinates;
 
 abstract public class Entity {
     private Coordinates coordinates;
-
     private String Appearance;
-
     private int HP;
-
     public Entity(String Appearance, Coordinates coordinates, int HP){
         this.HP = HP;
         this.coordinates = coordinates;

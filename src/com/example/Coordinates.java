@@ -5,7 +5,6 @@ import java.util.Objects;
 public class Coordinates {
     private int x;
     private int y;
-
     public Coordinates(int x, int y){
         this.x = x;
         this.y = y;
@@ -29,7 +28,6 @@ public class Coordinates {
         // Координаты считаются смежными, если разница по каждой оси не превышает 1
         return xDiff <= 1 && yDiff <= 1;
     }
-
 
     public Coordinates shift(CoordinatesShift shift, Mapping map){
         int newX = this.x + shift.getX();

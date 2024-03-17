@@ -9,10 +9,8 @@ import java.util.*;
 
 public class Simulation {
     private Actions actions;
-
     private boolean moveInProgress = false;
     private Scanner scanner = new Scanner(System.in);
-
     public Simulation(Actions actions) {
         this.actions = actions;
     }

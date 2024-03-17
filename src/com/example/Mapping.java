@@ -15,20 +15,12 @@ public class Mapping {
     private int width;
     private int height;
     private HashMap<Coordinates, Entity> entities;
-
     private static Coordinates randomCoordinates;
-
     private int creatureCountPredator = 0;
-
     private int creatureCountHerbivore = 0;
-
     private int creatureCountGrass = 0;
-
     private int creatureCountRock = 0;
-
     private int creatureCountTree = 0;
-
-
     public Mapping(int width, int height){
         this.width = width;
         this.height = height;
@@ -223,7 +215,7 @@ public class Mapping {
         if (entities.get(coordinates) instanceof Herbivore && entity instanceof Herbivore) {
             return false;
         }
-        return true; // В противном случае, возвращаем true
+        return true;
     }
 
     public boolean determineTargetAtNextCoordinates(Coordinates next, Entity entity){
@@ -232,15 +224,6 @@ public class Mapping {
         }
         if (entities.get(next) instanceof Grass && entity instanceof Herbivore){
             return true;
-        }
-        return false;
-    }
-
-    public boolean hp(Coordinates next){
-        if (entities.get(next).getHP() == 0){
-            return true;
-        }else {
-            entities.get(next).setHP(entities.get(next).getHP() - 1);
         }
         return false;
     }
