@@ -29,10 +29,13 @@ public class Settings {
         switch (input){
             case 1:
                 speed = 1000;
+                break;
             case 2:
                 speed = 1500;
+                break;
             default:
                 speed = 2500;
+                break;
         }
         return speed;
     }
