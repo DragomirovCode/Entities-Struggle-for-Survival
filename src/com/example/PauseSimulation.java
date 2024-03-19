@@ -11,15 +11,10 @@ public class PauseSimulation extends Thread {
 
     public void run() {
         while (running) {
-            try {
-                String tread = scanner.nextLine();
-                if(tread.equals("0")){
-                    System.out.println("Симуляция завершена.");
-                    stopTread();
-                }
-                Thread.sleep(200); // Ждем некоторое время перед следующей итерацией
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            String tread = scanner.nextLine();
+            if (tread.equals("0")) {
+                System.out.println("Симуляция завершена.");
+                stopTread();
             }
         }
     }
