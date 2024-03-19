@@ -8,6 +8,7 @@ import com.example.entities.Predator;
 import java.util.*;
 
 public class Simulation {
+    private PauseSimulation pauseSimulation = new PauseSimulation();
     private Actions actions;
     private boolean moveInProgress = false;
     private Scanner scanner = new Scanner(System.in);
@@ -37,6 +38,8 @@ public class Simulation {
     public void startSimulation() throws InterruptedException {
         Mapping mapping = actions.getCurrentMap();
         boolean predatorMove = true;
+        pauseSimulation.start();
+        System.out.println("Введите 0, чтобы завершить симуляцию");
         while(true) {
                 List<Predator> allPredators = Mapping.findAllPredators(mapping);
                 List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
@@ -49,11 +52,17 @@ public class Simulation {
                                 predator.getCoordinates(), closestHerbivore.getCoordinates(), mapping
                         );
                         Coordinates oldCoordinatesPredator = predator.getCoordinates();
+                        if(!PauseSimulation.running){
+                            return;
+                        }
                         predator.makeMove(
                                 predator.getCoordinates(), closestHerbivore.getCoordinates(), pathPredator, mapping, predator
                         );
                         Coordinates newCoordinatesPredator = predator.getCoordinates();
                         if (!oldCoordinatesPredator.equals(newCoordinatesPredator)) {
+                            if(!PauseSimulation.running){
+                                return;
+                            }
                             renderMap(mapping);
                             System.out.println("===");
                             Thread.sleep(Actions.speed);
@@ -70,12 +79,18 @@ public class Simulation {
                                 herbivore.getCoordinates(), closestGrass.getCoordinates(), mapping
                         );
                         Coordinates oldCoordinatesHerbivore = herbivore.getCoordinates();
+                        if(!PauseSimulation.running){
+                            return;
+                        }
                         herbivore.makeMove(
                                 herbivore.getCoordinates(), closestGrass.getCoordinates(),
                                 pathHerbivore, mapping, herbivore
                         );
                         Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
                         if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
+                            if(!PauseSimulation.running){
+                                return;
+                            }
                             renderMap(mapping);
                             System.out.println("===");
                             Thread.sleep(Actions.speed);
