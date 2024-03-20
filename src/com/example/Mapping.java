@@ -21,6 +21,7 @@ public class Mapping {
     private int creatureCountGrass = 0;
     private int creatureCountRock = 0;
     private int creatureCountTree = 0;
+    private int creatureCountPolypith = 0;
     public Mapping(int width, int height){
         this.width = width;
         this.height = height;
@@ -30,10 +31,10 @@ public class Mapping {
     public void fillRandomPositions(String mapSize){
         if(mapSize.equals("1")){
             while ((creatureCountPredator < 3) || (creatureCountHerbivore < 3) || (creatureCountGrass < 3) ||
-                    (creatureCountRock < 3) || (creatureCountTree < 3)){
+                    (creatureCountRock < 3) || (creatureCountTree < 3) || (creatureCountPolypith < 2)){
 
-                int randomCoordinatesForX = random.nextInt(8);
-                int randomCoordinatesForY = random.nextInt(8);
+                int randomCoordinatesForX = random.nextInt(11);
+                int randomCoordinatesForY = random.nextInt(11);
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
@@ -54,6 +55,10 @@ public class Mapping {
                         Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
+                    }else if(creatureCountPolypith < 1){
+                        Polypith newPolypith = new Polypith(polypithAppearance, randomCoordinates, settings.polypithHP);
+                        addEntity(newPolypith.getCoordinates(), newPolypith);
+                        creatureCountPolypith++;
                     }else{
                         Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
                         addEntity(newTree.getCoordinates(), newTree);
@@ -63,10 +68,10 @@ public class Mapping {
             }
         }else if(mapSize.equals("2")){
             while ((creatureCountPredator < 4) || (creatureCountHerbivore < 4) || (creatureCountGrass < 4) ||
-                    (creatureCountRock < 4) || (creatureCountTree < 4)){
+                    (creatureCountRock < 4) || (creatureCountTree < 4) || (creatureCountPolypith < 2)){
 
-                int randomCoordinatesForX = random.nextInt(10);
-                int randomCoordinatesForY = random.nextInt(10);
+                int randomCoordinatesForX = random.nextInt(13);
+                int randomCoordinatesForY = random.nextInt(13);
 
                 randomCoordinates = new Coordinates(randomCoordinatesForX, randomCoordinatesForY);
 
@@ -87,6 +92,10 @@ public class Mapping {
                         Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
+                    }else if(creatureCountPolypith < 2){
+                        Polypith newPolypith = new Polypith(polypithAppearance, randomCoordinates, settings.polypithHP);
+                        addEntity(newPolypith.getCoordinates(), newPolypith);
+                        creatureCountPolypith++;
                     }else{
                         Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
                         addEntity(newTree.getCoordinates(), newTree);
@@ -96,7 +105,7 @@ public class Mapping {
             }
         }else if(mapSize.equals("3")){
             while ((creatureCountPredator < 2) || (creatureCountHerbivore < 2) || (creatureCountGrass < 2) ||
-                    (creatureCountRock < 2) || (creatureCountTree < 2)){
+                    (creatureCountRock < 2) || (creatureCountTree < 2) || (creatureCountPolypith < 1)){
 
                 int randomCoordinatesForX = random.nextInt(8);
                 int randomCoordinatesForY = random.nextInt(8);
@@ -120,6 +129,10 @@ public class Mapping {
                         Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
+                    }else if(creatureCountPolypith < 1){
+                        Polypith newPolypith = new Polypith(polypithAppearance, randomCoordinates, settings.polypithHP);
+                        addEntity(newPolypith.getCoordinates(), newPolypith);
+                        creatureCountPolypith++;
                     }else{
                         Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
                         addEntity(newTree.getCoordinates(), newTree);
