@@ -248,6 +248,17 @@ public class Mapping {
         return allGrasses;
     }
 
+    public static List<Polypith> findAllPolypith(Mapping mapping){
+        List<Polypith> allPolypith = new ArrayList<>();
+
+        for(Entity entity: mapping.getEntities().values()){
+            if(entity instanceof Polypith){
+                allPolypith.add((Polypith) entity);
+            }
+        }
+        return allPolypith;
+    }
+
     public boolean checkSpeciesCollision(Coordinates coordinates, Entity entity){
         if (entities.get(coordinates) instanceof Predator && entity instanceof Predator) {
             return false;
