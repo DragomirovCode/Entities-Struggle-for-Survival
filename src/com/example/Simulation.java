@@ -230,6 +230,19 @@ public class Simulation {
         return closestGrass;
     }
 
+    private <T extends Entity> T findClosestEntity(Polypith polypith, List<T> entities){
+        int minDistance = Integer.MAX_VALUE;
+        T closestEntity = null;
+        for (T entity: entities){
+            int distance = Coordinates.calculateDistance(polypith.getCoordinates(), entity.getCoordinates());
+            if(distance < minDistance){
+                minDistance = distance;
+                closestEntity = entity;
+            }
+        }
+        return closestEntity;
+    }
+
     private void askForSingleMove() {
         moveInProgress = false;
         System.out.println();
