@@ -1,9 +1,6 @@
 package com.example;
 
-import com.example.entities.Entity;
-import com.example.entities.Grass;
-import com.example.entities.Herbivore;
-import com.example.entities.Predator;
+import com.example.entities.*;
 
 import java.util.*;
 
