@@ -41,6 +41,9 @@ public class Simulation {
                 List<Predator> allPredators = Mapping.findAllPredators(mapping);
                 List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
                 List<Grass> allGrasses = Mapping.findAllGrasses(mapping);
+
+                List<Polypith> allPolypith = Mapping.findAllPolypith(mapping);
+                List<Entity> ecosystemEntities = Mapping.findEcosystemEntities(mapping);
             if (predatorMove) {
                 for (Predator predator : allPredators) {
                     Herbivore closestHerbivore = findClosestHerbivore(predator, allHerbivore);
