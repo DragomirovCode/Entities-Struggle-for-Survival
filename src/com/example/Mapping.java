@@ -182,6 +182,13 @@ public class Mapping {
                     return false;
                 }
             }
+            if(entity instanceof Polypith){
+                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+                if (distance < minDistance) {
+                    return false;
+                }
+            }
         }
         return true;
     }
