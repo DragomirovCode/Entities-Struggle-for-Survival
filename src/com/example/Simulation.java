@@ -99,6 +99,34 @@ public class Simulation {
                     }
                 }
             }
+
+            for(Polypith polypith: allPolypith){
+                Entity closestEcosystemEntities = findClosestEntity(polypith, ecosystemEntities);
+                if (closestEcosystemEntities != null){
+                    List<Coordinates> pathPolypith = polypith.searchPath(
+                            polypith.getCoordinates(), closestEcosystemEntities.getCoordinates(), mapping
+                    );
+                    Coordinates oldCoordinatesPolypith = polypith.getCoordinates();
+                    if(!PauseSimulation.running){
+                        return;
+                    }
+                    polypith.makeMove(
+                            polypith.getCoordinates(), closestEcosystemEntities.getCoordinates(),
+                            pathPolypith, mapping, polypith
+                    );
+                    Coordinates newCoordinatesPolypith = polypith.getCoordinates();
+                    if (!oldCoordinatesPolypith.equals(newCoordinatesPolypith)){
+                        if(!PauseSimulation.running){
+                            return;
+                        }
+                        renderMap(mapping);
+                        System.out.println("===");
+                        Thread.sleep(Actions.speed);
+                        break;
+                    }
+                }
+            }
+
             predatorMove = !predatorMove;
             if (allHerbivore.isEmpty()) {
                 break;
