@@ -7,8 +7,8 @@ public class PauseSimulation extends Thread {
     public static boolean running = true;
     public void stopTread() {
         running = false;
+        scanner.close();
     }
-
     public void run() {
         while (running) {
             String tread = scanner.nextLine();
