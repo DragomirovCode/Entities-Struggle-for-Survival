@@ -217,6 +217,26 @@ public class Mapping {
         return allPredators;
     }
 
+    public static List<Entity> findEcosystemEntities(Mapping mapping){
+        List<Entity> ecosystemEntities = new ArrayList<>();
+
+        for (Entity entity: mapping.getEntities().values()){
+            if (entity instanceof Predator){
+                ecosystemEntities.add(entity);
+            }
+            if (entity instanceof Herbivore){
+                ecosystemEntities.add(entity);
+            }
+            if (entity instanceof Grass){
+                ecosystemEntities.add(entity);
+            }
+            if (entity instanceof  Polypith){
+                ecosystemEntities.add(entity);
+            }
+        }
+        return ecosystemEntities;
+    }
+
     public static List<Grass> findAllGrasses(Mapping mapping){
         List<Grass> allGrasses = new ArrayList<>();
 
