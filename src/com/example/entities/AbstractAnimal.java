@@ -19,41 +19,50 @@ public class AbstractAnimal extends Creature {
         } else {
             Coordinates nextMove = path.get(pathIndex);
             if(from.areAdjacent(from, nextMove) && map.checkSpeciesCollision(nextMove, entity)) {
-                if (map.determineTargetAtNextCoordinates(nextMove, entity) && map.getEntities().get(nextMove).getHP() > 1){
-                    System.out.println(entity.getAppearance() + " перемещается с "
-                            + map.getEntities().get(from).getCoordinates() + " в " + nextMove + " и атакует "
-                            + map.getEntities().get(nextMove).getAppearance()
-                            + " на координатах " + map.getEntities().get(nextMove).getCoordinates()
-                            + " с " + map.getEntities().get(nextMove).getHP() + " ХП");
-                    map.getEntities().get(nextMove).setHP(getHP() - 1);
-                }
-                else if (map.getAvailabilityStatusOfCoordinate(nextMove) &&
-                        !map.determineTargetAtNextCoordinates(nextMove, entity) ||
-                        !map.getAvailabilityStatusOfCoordinate(nextMove) && map.getEntities().get(nextMove).getHP() == 1) {
-                    if(map.getEntities().get(nextMove) != null) {
-                        System.out.println(entity.getAppearance() + " перемещается с "
-                                + map.getEntities().get(from).getCoordinates() + " в " + nextMove + " и съедает "
-                                + map.getEntities().get(nextMove).getAppearance() + " на координатах "
-                                + map.getEntities().get(nextMove).getCoordinates() + " с "
-                                + map.getEntities().get(nextMove).getHP() + " ХП");
-                    }else {
-                        System.out.println(entity.getAppearance() + " перемещается с "
-                                + map.getEntities().get(from).getCoordinates() + " в " + nextMove);
+                if (map.determineTargetAtNextCoordinates(nextMove, entity)) {
+                    Entity targetEntity = map.getEntities().get(nextMove);
+                    if (targetEntity.getHP() > 1) {
+                        // Атаковать целевую сущность
+                        attackTarget(from, nextMove, targetEntity, map, entity);
+                    } else {
+                        // Поедает сущность
+                        entityDevouringAlongPath(from, path, map, entity, targetEntity);
                     }
-                    map.updateEntityPosition(from, nextMove);
-                    setCoordinates(nextMove);
-                    pathIndex++;
+                } else {
+                    // Нет целевой сущности на следующих координатах, продолжить движение по пути
+                    move(from, path, map, entity);
                 }
-            }else {
+            } else {
                 // Если текущая цель стала недоступной, найти новую цель
-                findNewPath(from, to, path, map);
-                return;
-            }
-            if (pathIndex >= path.size() - 1) {
                 findNewPath(from, to, path, map);
             }
         }
     }
+
+    private void entityDevouringAlongPath(Coordinates from, List<Coordinates> path, Mapping map, Entity entity, Entity targetEntity) {
+        Coordinates nextMove = path.get(pathIndex);
+        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates()
+                + " в " + nextMove  + " и съедает " + targetEntity.getAppearance());
+        map.updateEntityPosition(from, nextMove);
+        entity.setCoordinates(nextMove);
+        pathIndex++;
+    }
+
+    private void move(Coordinates from, List<Coordinates> path, Mapping map, Entity entity){
+        Coordinates nextMove = path.get(pathIndex);
+        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates() + " в " + nextMove);
+        map.updateEntityPosition(from, nextMove);
+        entity.setCoordinates(nextMove);
+        pathIndex++;
+    }
+
+    private void attackTarget(Coordinates from, Coordinates targetCoords, Entity targetEntity, Mapping map, Entity entity) {
+        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates() +
+                " к " + targetCoords + " и атакует " + targetEntity.getAppearance() +
+                " на координатах " + targetCoords + " с " + targetEntity.getHP() + " ХП");
+        targetEntity.setHP(targetEntity.getHP() - 1);
+    }
+
 
     private void findNewPath(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map) {
         List<Coordinates> newPath = searchPath(from, to, map);
