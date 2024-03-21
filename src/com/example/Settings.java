@@ -1,11 +1,11 @@
 package com.example;
 
 public class Settings {
-    public static String predatorAppearance = "P";
-    public static String herbivoreAppearance = "H";
-    public static String grassAppearance = "G";
-    public static String rockAppearance = "R";
-    public static String treeAppearance = "T";
+    public static String predatorAppearance = "🦊";
+    public static String herbivoreAppearance = "🐰";
+    public static String grassAppearance = "🌾";
+    public static String rockAppearance = "🗻";
+    public static String treeAppearance = "🌳";
 
     public int PredatorHP = 2;
     public int HerbivoreHP = 2;
