@@ -135,17 +135,4 @@ public class AbstractAnimal extends Creature {
         // System.out.println("Найденный путь: " + path);
         return path;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AbstractAnimal that = (AbstractAnimal) o;
-        return pathIndex == that.pathIndex;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(pathIndex);
-    }
 }
