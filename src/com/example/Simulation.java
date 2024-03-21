@@ -19,7 +19,7 @@ public class Simulation {
                 boolean entityFound = false;
                 for (Entity entity : map.getEntities().values()) {
                     if (entity != null && entity.getCoordinates().getX() == x && entity.getCoordinates().getY() == y) {
-                        System.out.print(entity.getAppearance().charAt(0) + " ");
+                        System.out.print(entity.getAppearance() + " ");
                         entityFound = true;
                         break;
                     }
