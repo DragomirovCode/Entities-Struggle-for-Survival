@@ -105,7 +105,7 @@ public class Mapping {
             }
         }else if(mapSize.equals("3")){
             while ((creatureCountPredator < 2) || (creatureCountHerbivore < 2) || (creatureCountGrass < 2) ||
-                    (creatureCountRock < 2) || (creatureCountTree < 2) || (creatureCountPolypith < 1)){
+                    (creatureCountRock < 2)  || (creatureCountPolypith < 2)){
 
                 int randomCoordinatesForX = random.nextInt(8);
                 int randomCoordinatesForY = random.nextInt(8);
@@ -129,14 +129,10 @@ public class Mapping {
                         Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
-                    }else if(creatureCountPolypith < 1){
+                    }else if(creatureCountPolypith < 2){
                         Polypith newPolypith = new Polypith(polypithAppearance, randomCoordinates, settings.polypithHP);
                         addEntity(newPolypith.getCoordinates(), newPolypith);
                         creatureCountPolypith++;
-                    }else{
-                        Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
-                        addEntity(newTree.getCoordinates(), newTree);
-                        creatureCountTree++;
                     }
                 }
             }
@@ -266,6 +262,9 @@ public class Mapping {
         if (entities.get(coordinates) instanceof Herbivore && entity instanceof Herbivore) {
             return false;
         }
+        if (entities.get(coordinates) instanceof  Polypith && entity instanceof  Polypith){
+            return true;
+        }
         return true;
     }
 
@@ -274,6 +273,11 @@ public class Mapping {
             return true;
         }
         if (entities.get(next) instanceof Grass && entity instanceof Herbivore){
+            return true;
+        }
+        if((entities.get(next) instanceof Herbivore || entities.get(next) instanceof Grass
+                || entities.get(next) instanceof Predator || entities.get(next) instanceof Polypith) &&
+                entity instanceof Polypith){
             return true;
         }
         return false;
