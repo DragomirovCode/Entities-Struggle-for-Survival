@@ -262,9 +262,6 @@ public class Mapping {
         if (entities.get(coordinates) instanceof Herbivore && entity instanceof Herbivore) {
             return false;
         }
-        if (entities.get(coordinates) instanceof  Polypith && entity instanceof  Polypith){
-            return true;
-        }
         return true;
     }
 
