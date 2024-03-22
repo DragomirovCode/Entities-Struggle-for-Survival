@@ -34,8 +34,6 @@ public class Simulation {
 
     public void startSimulation() throws InterruptedException {
         Mapping mapping = actions.getCurrentMap();
-        boolean predatorMove = true;
-        boolean polypithMove = true;
         pauseSimulation.start();
         System.out.println("Введите 0, чтобы завершить симуляцию");
         while(true) {
@@ -133,8 +131,6 @@ public class Simulation {
                     }
                 }
             }
-            polypithMove = !polypithMove;
-            predatorMove = !predatorMove;
             if (allPredators.isEmpty() && allHerbivore.isEmpty() && allGrasses.isEmpty() && allPolypith.size() == 1) {
                 System.out.println("Симуляция завершина, нажмите 0");
                 break;
