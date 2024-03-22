@@ -20,20 +20,18 @@ public class Settings {
     public int treeHP;
     public int polypithHP;
 
-    public static Mapping createMap(int size){
-        return switch (size) {
-            case 1 -> new Mapping(11, 11);
-            case 2 -> new Mapping(13, 13);
-            default -> new Mapping(8, 8);
-        };
-    }
+    public static int maxPredatorCount;
+    public static int maxHerbivoreCount;
+    public static int maxGrassCount;
+    public static int maxRockCount;
+    public static int maxTreeCount;
+    public static int maxPolypithCount;
 
-    public static int calculateSpeed(int input){
-        return switch (input) {
-            case 1 -> 1000;
-            case 2 -> 1500;
-            default -> 2500;
-        };
+    public static int width;
+    public static int height;
+
+    public static Mapping createMap(){
+        return (new Mapping(width, height));
     }
 
     public void loadSettingsFromFile() throws FileNotFoundException  {
@@ -53,20 +51,26 @@ public class Settings {
                     case "rockAppearance" -> rockAppearance = value;
                     case "treeAppearance" -> treeAppearance = value;
                     case "polypithAppearance" -> polypithAppearance = value;
+
                     case "predatorHP" -> predatorHP = Integer.parseInt(value);
                     case "herbivoreHP" -> herbivoreHP = Integer.parseInt(value);
                     case "grassHP" -> grassHP = Integer.parseInt(value);
                     case "rockHP" -> rockHP = Integer.parseInt(value);
                     case "treeHP" -> treeHP = Integer.parseInt(value);
                     case "polypithHP" -> polypithHP = Integer.parseInt(value);
+
+                    case "maxPredatorCount" -> maxPredatorCount = Integer.parseInt(value);
+                    case "maxHerbivoreCount" -> maxHerbivoreCount = Integer.parseInt(value);
+                    case "maxGrassCount" -> maxGrassCount = Integer.parseInt(value);
+                    case "maxRockCount" -> maxRockCount = Integer.parseInt(value);
+                    case "maxTreeCount" -> maxTreeCount = Integer.parseInt(value);
+                    case "maxPolypithCount" -> maxPolypithCount = Integer.parseInt(value);
+
+                    case "width" -> width = Integer.parseInt(value);
+                    case "height" -> height = Integer.parseInt(value);
                 }
             }
         }
         scanner.close();
     }
 }
-/**
- * Хп,+
- * скины,+
- * Их количество
- */
