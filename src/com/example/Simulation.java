@@ -68,7 +68,7 @@ public class Simulation {
                             }
                             renderMap(mapping);
                             System.out.println("===");
-                            Thread.sleep(Actions.speed);
+                            Thread.sleep(1000);
                             break;
                         }
                         break;
@@ -97,7 +97,7 @@ public class Simulation {
                             }
                             renderMap(mapping);
                             System.out.println("===");
-                            Thread.sleep(Actions.speed);
+                            Thread.sleep(1000);
                             break;
                         }
                         break;
@@ -126,7 +126,7 @@ public class Simulation {
                             }
                             renderMap(mapping);
                             System.out.println("===");
-                            Thread.sleep(Actions.speed);
+                            Thread.sleep(1000);
                             break;
                         }
                         break;
