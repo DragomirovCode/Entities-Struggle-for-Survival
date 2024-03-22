@@ -7,6 +7,7 @@ import com.example.Mapping;
 import java.util.*;
 
 public class AbstractAnimal extends Creature {
+    private boolean attackMade = false; // Переменная для отслеживания был ли уже совершен удар в текущем ходу
     private int pathIndex = 1;
     public AbstractAnimal(String Appearance, Coordinates coordinates, int HP) {
         super(Appearance, coordinates, HP);
@@ -14,6 +15,7 @@ public class AbstractAnimal extends Creature {
 
     @Override
     public void makeMove(Coordinates from, Coordinates to, List<Coordinates> path, Mapping map, Entity entity) {
+        attackMade = false;
         if (path == null || path.isEmpty() || pathIndex >= path.size()) {
             findNewPath(from, to, path, map);
         } else {
@@ -23,7 +25,7 @@ public class AbstractAnimal extends Creature {
                     Entity targetEntity = map.getEntities().get(nextMove);
                     if (targetEntity.getHP() > 1) {
                         // Атаковать целевую сущность
-                        attackTarget(from, nextMove, targetEntity, map, entity);
+                        attackTarget(from, nextMove, targetEntity, entity);
                     } else {
                         // Поедает сущность
                         entityDevouringAlongPath(from, path, map, entity, targetEntity);
@@ -49,18 +51,22 @@ public class AbstractAnimal extends Creature {
     }
 
     private void move(Coordinates from, List<Coordinates> path, Mapping map, Entity entity){
-        Coordinates nextMove = path.get(pathIndex);
-        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates() + " в " + nextMove);
-        map.updateEntityPosition(from, nextMove);
-        entity.setCoordinates(nextMove);
-        pathIndex++;
+            Coordinates nextMove = path.get(pathIndex);
+            System.out.println(entity.getAppearance() + " перемещается с "
+                    + from + " в " + nextMove);
+            map.updateEntityPosition(from, nextMove);
+            entity.setCoordinates(nextMove);
+            pathIndex++;
     }
 
-    private void attackTarget(Coordinates from, Coordinates targetCoords, Entity targetEntity, Mapping map, Entity entity) {
-        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates() +
-                " к " + targetCoords + " и атакует " + targetEntity.getAppearance() +
-                " на координатах " + targetCoords + " с " + targetEntity.getHP() + " ХП");
-        targetEntity.setHP(targetEntity.getHP() - 1);
+    private void attackTarget(Coordinates from, Coordinates targetCoords, Entity targetEntity, Entity entity) {
+        if (!attackMade) {
+            System.out.println(entity.getAppearance() + " перемещается с " + from +
+                    " к " + targetCoords + " и атакует " + targetEntity.getAppearance() +
+                    " на координатах " + targetCoords + " с " + targetEntity.getHP() + " ХП");
+            targetEntity.setHP(targetEntity.getHP() - 1);
+            attackMade = true;
+        }
     }
 
 
