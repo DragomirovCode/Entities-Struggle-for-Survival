@@ -46,21 +46,21 @@ public class Simulation {
                 List<Entity> ecosystemEntities = Mapping.findEcosystemEntities(mapping);
 
             if (predatorMove && !allPredators.isEmpty() && !allHerbivore.isEmpty()) {
-                for (int i = 0; i < allPredators.size(); i++) {
-                    Herbivore closestHerbivore = findClosestHerbivore(allPredators.get(i), allHerbivore);
+                for (Predator allPredator : allPredators) {
+                    Herbivore closestHerbivore = findClosestHerbivore(allPredator, allHerbivore);
                     if (closestHerbivore != null) {
-                        List<Coordinates> pathPredator = allPredators.get(i).searchPath(
-                                allPredators.get(i).getCoordinates(), closestHerbivore.getCoordinates(), mapping
+                        List<Coordinates> pathPredator = allPredator.searchPath(
+                                allPredator.getCoordinates(), closestHerbivore.getCoordinates(), mapping
                         );
-                        Coordinates oldCoordinatesPredator = allPredators.get(i).getCoordinates();
+                        Coordinates oldCoordinatesPredator = allPredator.getCoordinates();
                         if (!PauseSimulation.running) {
                             return;
                         }
-                        allPredators.get(i).makeMove(
-                                allPredators.get(i).getCoordinates(), closestHerbivore.getCoordinates(),
-                                pathPredator, mapping, allPredators.get(i)
+                        allPredator.makeMove(
+                                allPredator.getCoordinates(), closestHerbivore.getCoordinates(),
+                                pathPredator, mapping, allPredator
                         );
-                        Coordinates newCoordinatesPredator = allPredators.get(i).getCoordinates();
+                        Coordinates newCoordinatesPredator = allPredator.getCoordinates();
                         if (!oldCoordinatesPredator.equals(newCoordinatesPredator)) {
                             if (!PauseSimulation.running) {
                                 return;
@@ -75,49 +75,49 @@ public class Simulation {
                 }
             }
             if (predatorMove) {
-                for (int i = 0; i < allPolypith.size(); i++) {
-                    Entity closestEcosystemEntities = findClosestEntity(allPolypith.get(i), ecosystemEntities);
+                for (Polypith polypith : allPolypith) {
+                    Entity closestEcosystemEntities = findClosestEntity(polypith, ecosystemEntities);
                     if (closestEcosystemEntities != null) {
-                        List<Coordinates> pathPolypith = allPolypith.get(i).searchPath(
-                                allPolypith.get(i).getCoordinates(), closestEcosystemEntities.getCoordinates(), mapping
+                        List<Coordinates> pathPolypith = polypith.searchPath(
+                                polypith.getCoordinates(), closestEcosystemEntities.getCoordinates(), mapping
                         );
-                        Coordinates oldCoordinatesPolypith = allPolypith.get(i).getCoordinates();
+                        Coordinates oldCoordinatesPolypith = polypith.getCoordinates();
                         if (!PauseSimulation.running) {
                             return;
                         }
-                        allPolypith.get(i).makeMove(
-                                allPolypith.get(i).getCoordinates(), closestEcosystemEntities.getCoordinates(),
-                                pathPolypith, mapping, allPolypith.get(i)
+                        polypith.makeMove(
+                                polypith.getCoordinates(), closestEcosystemEntities.getCoordinates(),
+                                pathPolypith, mapping, polypith
                         );
-                        Coordinates newCoordinatesPolypith = allPolypith.get(i).getCoordinates();
+                        Coordinates newCoordinatesPolypith = polypith.getCoordinates();
                         if (!oldCoordinatesPolypith.equals(newCoordinatesPolypith)) {
                             if (!PauseSimulation.running) {
                                 return;
                             }
                             renderMap(mapping);
                             System.out.println("===");
-                          //  Thread.sleep(Actions.speed);
+                            //  Thread.sleep(Actions.speed);
                             break;
                         }
                         break;
                     }
                 }
             } else if(!predatorMove && !allHerbivore.isEmpty() && !allGrasses.isEmpty()) {
-                for (int i = 0; i < allHerbivore.size(); i++) {
-                    Grass closestGrass = findClosestGrass(allHerbivore.get(i), allGrasses);
+                for (Herbivore herbivore : allHerbivore) {
+                    Grass closestGrass = findClosestGrass(herbivore, allGrasses);
                     if (closestGrass != null) {
-                        List<Coordinates> pathHerbivore = allHerbivore.get(i).searchPath(
-                                allHerbivore.get(i).getCoordinates(), closestGrass.getCoordinates(), mapping
+                        List<Coordinates> pathHerbivore = herbivore.searchPath(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(), mapping
                         );
-                        Coordinates oldCoordinatesHerbivore = allHerbivore.get(i).getCoordinates();
+                        Coordinates oldCoordinatesHerbivore = herbivore.getCoordinates();
                         if (!PauseSimulation.running) {
                             return;
                         }
-                        allHerbivore.get(i).makeMove(
-                                allHerbivore.get(i).getCoordinates(), closestGrass.getCoordinates(),
-                                pathHerbivore, mapping, allHerbivore.get(i)
+                        herbivore.makeMove(
+                                herbivore.getCoordinates(), closestGrass.getCoordinates(),
+                                pathHerbivore, mapping, herbivore
                         );
-                        Coordinates newCoordinatesHerbivore = allHerbivore.get(i).getCoordinates();
+                        Coordinates newCoordinatesHerbivore = herbivore.getCoordinates();
                         if (!oldCoordinatesHerbivore.equals(newCoordinatesHerbivore)) {
                             if (!PauseSimulation.running) {
                                 return;
