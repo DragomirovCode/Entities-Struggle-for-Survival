@@ -14,7 +14,7 @@ rockHP=0
 treeHP=0
 polypithHP=3
 
-# Ширина и высота
+# Ширина и высота (карта)
 width=20
 height=20
 
