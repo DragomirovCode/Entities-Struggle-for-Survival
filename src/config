@@ -1,0 +1,27 @@
+# Внешний вид (скины)
+predatorAppearance=🦊
+herbivoreAppearance=🐰
+grassAppearance=🌾
+rockAppearance=🗻
+treeAppearance=🌳
+polypithAppearance=👾
+
+# Начальное количество жизней (HP)
+predatorHP=3
+herbivoreHP=3
+grassHP=3
+rockHP=0
+treeHP=0
+polypithHP=3
+
+# Ширина и высота
+width=20
+height=20
+
+# Кол-во существ
+maxPredatorCount=5
+maxHerbivoreCount=10
+maxGrassCount=10
+maxRockCount=10
+maxTreeCount=10
+maxPolypithCount=3
