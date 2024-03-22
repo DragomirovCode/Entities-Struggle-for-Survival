@@ -5,11 +5,9 @@ import java.util.Scanner;
 
 public class Actions {
     private Settings settings = new Settings();
-    private Scanner scanner = new Scanner(System.in);;
+    private Scanner scanner = new Scanner(System.in);
     private Simulation simulation;
     private Mapping currentMap;
-    public static int speed;
-    public static String speedSize = "";
     public static String creatureMovementMode = "";
     public Actions(){
         this.simulation = new Simulation(this);
