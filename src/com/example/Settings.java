@@ -53,11 +53,11 @@ public class Settings {
                     case "rockAppearance" -> rockAppearance = value;
                     case "treeAppearance" -> treeAppearance = value;
                     case "polypithAppearance" -> polypithAppearance = value;
-                    case "PredatorHP" -> predatorHP = Integer.parseInt(value);
-                    case "HerbivoreHP" -> herbivoreHP = Integer.parseInt(value);
-                    case "GrassHP" -> grassHP = Integer.parseInt(value);
-                    case "RockHP" -> rockHP = Integer.parseInt(value);
-                    case "TreeHP" -> treeHP = Integer.parseInt(value);
+                    case "predatorHP" -> predatorHP = Integer.parseInt(value);
+                    case "herbivoreHP" -> herbivoreHP = Integer.parseInt(value);
+                    case "grassHP" -> grassHP = Integer.parseInt(value);
+                    case "rockHP" -> rockHP = Integer.parseInt(value);
+                    case "treeHP" -> treeHP = Integer.parseInt(value);
                     case "polypithHP" -> polypithHP = Integer.parseInt(value);
                 }
             }
