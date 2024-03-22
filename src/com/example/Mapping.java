@@ -40,19 +40,19 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 3) {
-                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.PredatorHP);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.predatorHP);
                         addEntity(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else if(creatureCountHerbivore < 3){
-                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.HerbivoreHP);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.herbivoreHP);
                         addEntity(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }else if(creatureCountGrass < 3){
-                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.GrassHP);
+                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.grassHP);
                         addEntity(newGrass.getCoordinates(), newGrass);
                         creatureCountGrass++;
                     }else if(creatureCountRock < 3){
-                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
+                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.rockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
                     }else if(creatureCountPolypith < 1){
@@ -60,7 +60,7 @@ public class Mapping {
                         addEntity(newPolypith.getCoordinates(), newPolypith);
                         creatureCountPolypith++;
                     }else{
-                        Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
+                        Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.treeHP);
                         addEntity(newTree.getCoordinates(), newTree);
                         creatureCountTree++;
                     }
@@ -77,19 +77,19 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 4) {
-                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.PredatorHP);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.predatorHP);
                         addEntity(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else if(creatureCountHerbivore < 4){
-                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.HerbivoreHP);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.herbivoreHP);
                         addEntity(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }else if(creatureCountGrass < 4){
-                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.GrassHP);
+                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.grassHP);
                         addEntity(newGrass.getCoordinates(), newGrass);
                         creatureCountGrass++;
                     }else if(creatureCountRock < 4){
-                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
+                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.rockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
                     }else if(creatureCountPolypith < 2){
@@ -97,7 +97,7 @@ public class Mapping {
                         addEntity(newPolypith.getCoordinates(), newPolypith);
                         creatureCountPolypith++;
                     }else{
-                        Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.TreeHP);
+                        Tree newTree = new Tree(treeAppearance, randomCoordinates, settings.treeHP);
                         addEntity(newTree.getCoordinates(), newTree);
                         creatureCountTree++;
                     }
@@ -114,19 +114,19 @@ public class Mapping {
 
                 if(getAvailabilityStatusOfCoordinate(randomCoordinates) && isFarEnough(randomCoordinates)){
                     if(creatureCountPredator < 2) {
-                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.PredatorHP);
+                        Predator newPredator = new Predator(predatorAppearance, randomCoordinates, settings.predatorHP);
                         addEntity(newPredator.getCoordinates(), newPredator);
                         creatureCountPredator++;
                     }else if(creatureCountHerbivore < 2){
-                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.HerbivoreHP);
+                        Herbivore newHerbivore = new Herbivore(herbivoreAppearance, randomCoordinates, settings.herbivoreHP);
                         addEntity(newHerbivore.getCoordinates(), newHerbivore);
                         creatureCountHerbivore++;
                     }else if(creatureCountGrass < 2){
-                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.GrassHP);
+                        Grass newGrass = new Grass(grassAppearance, randomCoordinates, settings.grassHP);
                         addEntity(newGrass.getCoordinates(), newGrass);
                         creatureCountGrass++;
                     }else if(creatureCountRock < 2){
-                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.RockHP);
+                        Rock newRock = new Rock(rockAppearance, randomCoordinates, settings.rockHP);
                         addEntity(newRock.getCoordinates(), newRock);
                         creatureCountRock++;
                     }else if(creatureCountPolypith < 2){

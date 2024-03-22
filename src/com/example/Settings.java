@@ -2,7 +2,6 @@ package com.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Settings {
@@ -14,11 +13,11 @@ public class Settings {
     public static String treeAppearance;
     public static String polypithAppearance;
 
-    public int PredatorHP;
-    public int HerbivoreHP;
-    public int GrassHP;
-    public int RockHP;
-    public int TreeHP;
+    public int predatorHP;
+    public int herbivoreHP;
+    public int grassHP;
+    public int rockHP;
+    public int treeHP;
     public int polypithHP;
 
     public static Mapping createMap(int size){
@@ -67,19 +66,19 @@ public class Settings {
                         polypithAppearance = value;
                         break;
                     case "PredatorHP":
-                        PredatorHP = Integer.parseInt(value);
+                        predatorHP = Integer.parseInt(value);
                         break;
                     case "HerbivoreHP":
-                        HerbivoreHP = Integer.parseInt(value);
+                        herbivoreHP = Integer.parseInt(value);
                         break;
                     case "GrassHP":
-                        GrassHP = Integer.parseInt(value);
+                        grassHP = Integer.parseInt(value);
                         break;
                     case "RockHP":
-                        RockHP = Integer.parseInt(value);
+                        rockHP = Integer.parseInt(value);
                         break;
                     case "TreeHP":
-                        TreeHP = Integer.parseInt(value);
+                        treeHP = Integer.parseInt(value);
                         break;
                     case "polypithHP":
                         polypithHP = Integer.parseInt(value);
