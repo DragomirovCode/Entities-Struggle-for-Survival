@@ -30,12 +30,15 @@ public class AbstractAnimal extends Creature {
                         // Поедает сущность
                         entityDevouringAlongPath(from, path, map, entity, targetEntity);
                     }
-                } else {
+                }if (map.getAvailabilityStatusOfCoordinate(nextMove)){
                     // Нет целевой сущности на следующих координатах, продолжить движение по пути
-                    move(from, path, map, entity);
+                        move(from, path, map, entity);
                 }
             } else {
                 // Если текущая цель стала недоступной, найти новую цель
+                findNewPath(from, to, path, map);
+            }
+            if (pathIndex >= path.size() - 1) {
                 findNewPath(from, to, path, map);
             }
         }
@@ -43,8 +46,9 @@ public class AbstractAnimal extends Creature {
 
     private void entityDevouringAlongPath(Coordinates from, List<Coordinates> path, Mapping map, Entity entity, Entity targetEntity) {
         Coordinates nextMove = path.get(pathIndex);
-        System.out.println(entity.getAppearance() + " перемещается с " + map.getEntities().get(from).getCoordinates()
+        System.out.println(entity.getAppearance() + " перемещается с " + from
                 + " в " + nextMove  + " и съедает " + targetEntity.getAppearance());
+        map.removeEntity(targetEntity.getCoordinates());
         map.updateEntityPosition(from, nextMove);
         entity.setCoordinates(nextMove);
         pathIndex++;
@@ -52,11 +56,11 @@ public class AbstractAnimal extends Creature {
 
     private void move(Coordinates from, List<Coordinates> path, Mapping map, Entity entity){
             Coordinates nextMove = path.get(pathIndex);
-            System.out.println(entity.getAppearance() + " перемещается с "
-                    + from + " в " + nextMove);
-            map.updateEntityPosition(from, nextMove);
-            entity.setCoordinates(nextMove);
-            pathIndex++;
+                System.out.println(entity.getAppearance() + " перемещается с "
+                        + from + " в " + nextMove);
+                map.updateEntityPosition(from, nextMove);
+                entity.setCoordinates(nextMove);
+                pathIndex++;
     }
 
     private void attackTarget(Coordinates from, Coordinates targetCoords, Entity targetEntity, Entity entity) {
