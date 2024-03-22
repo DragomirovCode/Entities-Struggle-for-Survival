@@ -38,12 +38,6 @@ public class Mapping {
                 || (creatureCountTree < maxTreeCount)
                 || (creatureCountPolypith < maxPolypithCount)) {
 
-            // Проверяем, если количество существ уже превышает максимальное количество
-            if(entities.size() >= width * height) {
-                System.out.println("Слишком много сущностей на карте. Невозможно добавить больше.");
-                break; // Выходим из цикла, так как больше не можем добавить сущностей
-            }
-
             int randomCoordinatesForX = random.nextInt(Settings.width);
             int randomCoordinatesForY = random.nextInt(Settings.height);
 
