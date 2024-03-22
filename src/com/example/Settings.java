@@ -47,42 +47,18 @@ public class Settings {
                 String value = splitResult[1].trim();
 
                 switch (key) {
-                    case "predatorAppearance":
-                        predatorAppearance = value;
-                        break;
-                    case "herbivoreAppearance":
-                        herbivoreAppearance = value;
-                        break;
-                    case "grassAppearance":
-                        grassAppearance = value;
-                        break;
-                    case "rockAppearance":
-                        rockAppearance = value;
-                        break;
-                    case "treeAppearance":
-                        treeAppearance = value;
-                        break;
-                    case "polypithAppearance":
-                        polypithAppearance = value;
-                        break;
-                    case "PredatorHP":
-                        predatorHP = Integer.parseInt(value);
-                        break;
-                    case "HerbivoreHP":
-                        herbivoreHP = Integer.parseInt(value);
-                        break;
-                    case "GrassHP":
-                        grassHP = Integer.parseInt(value);
-                        break;
-                    case "RockHP":
-                        rockHP = Integer.parseInt(value);
-                        break;
-                    case "TreeHP":
-                        treeHP = Integer.parseInt(value);
-                        break;
-                    case "polypithHP":
-                        polypithHP = Integer.parseInt(value);
-                        break;
+                    case "predatorAppearance" -> predatorAppearance = value;
+                    case "herbivoreAppearance" -> herbivoreAppearance = value;
+                    case "grassAppearance" -> grassAppearance = value;
+                    case "rockAppearance" -> rockAppearance = value;
+                    case "treeAppearance" -> treeAppearance = value;
+                    case "polypithAppearance" -> polypithAppearance = value;
+                    case "PredatorHP" -> predatorHP = Integer.parseInt(value);
+                    case "HerbivoreHP" -> herbivoreHP = Integer.parseInt(value);
+                    case "GrassHP" -> grassHP = Integer.parseInt(value);
+                    case "RockHP" -> rockHP = Integer.parseInt(value);
+                    case "TreeHP" -> treeHP = Integer.parseInt(value);
+                    case "polypithHP" -> polypithHP = Integer.parseInt(value);
                 }
             }
         }
