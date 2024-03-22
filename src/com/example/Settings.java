@@ -8,12 +8,12 @@ public class Settings {
     public static String treeAppearance = "T";
     public static String polypithAppearance = "?";
 
-    public int PredatorHP = 2;
-    public int HerbivoreHP = 2;
-    public int GrassHP = 2;
+    public int PredatorHP = 3;
+    public int HerbivoreHP = 3;
+    public int GrassHP = 3;
     public int RockHP = 0;
     public int TreeHP = 0;
-    public int polypithHP = 2;
+    public int polypithHP = 3;
 
     public static Mapping createMap(int size){
         return switch (size) {
