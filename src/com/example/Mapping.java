@@ -79,51 +79,13 @@ public class Mapping {
         }
     }
 
-
     private boolean isFarEnough(Coordinates newCoordinates) {
+        int minDistance = 2;
         for (Entity entity : entities.values()) {
-            int minDistance = 2;
-            if (entity instanceof Predator) {
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
-            }
-            if(entity instanceof Herbivore){
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
-            }
-            if(entity instanceof  Grass){
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
-            }
-            if(entity instanceof Rock){
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
-            }
-            if(entity instanceof Tree){
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
-            }
-            if(entity instanceof Polypith){
-                int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
-                        Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
-                if (distance < minDistance) {
-                    return false;
-                }
+            int distance = (int) Math.sqrt(Math.pow(entity.getCoordinates().getX() - newCoordinates.getX(), 2) +
+                    Math.pow(entity.getCoordinates().getY() - newCoordinates.getY(), 2));
+            if (distance < minDistance) {
+                return false;
             }
         }
         return true;
