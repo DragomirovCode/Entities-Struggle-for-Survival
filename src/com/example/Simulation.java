@@ -35,6 +35,8 @@ public class Simulation {
     public void startSimulation() throws InterruptedException {
         Mapping mapping = actions.getCurrentMap();
         pauseSimulation.start();
+        boolean predatorMove = true;
+        boolean polypithMove = true;
         System.out.println("Введите 0, чтобы завершить симуляцию");
         while(true) {
                 List<Predator> allPredators = Mapping.findAllPredators(mapping);
@@ -44,7 +46,7 @@ public class Simulation {
                 List<Polypith> allPolypith = Mapping.findAllPolypith(mapping);
                 List<Entity> ecosystemEntities = Mapping.findEcosystemEntities(mapping);
 
-            if (!allPredators.isEmpty() && !allHerbivore.isEmpty()) {
+            if (predatorMove && !allPredators.isEmpty() && !allHerbivore.isEmpty()) {
                 for (Predator allPredator : allPredators) {
                     Herbivore closestHerbivore = findClosestHerbivore(allPredator, allHerbivore);
                     if (closestHerbivore != null) {
@@ -73,7 +75,7 @@ public class Simulation {
                     }
                 }
             }
-            if (!allHerbivore.isEmpty() && !allGrasses.isEmpty()) {
+            if (!predatorMove & !allHerbivore.isEmpty() && !allGrasses.isEmpty()) {
                 for (Herbivore herbivore : allHerbivore) {
                     Grass closestGrass = findClosestGrass(herbivore, allGrasses);
                     if (closestGrass != null) {
@@ -102,7 +104,7 @@ public class Simulation {
                     }
                 }
             }
-            if (!allPolypith.isEmpty()) {
+            if (polypithMove && !allPolypith.isEmpty()) {
                 for (Polypith polypith : allPolypith) {
                     Entity closestEcosystemEntities = findClosestEntity(polypith, ecosystemEntities);
                     if (closestEcosystemEntities != null) {
@@ -131,6 +133,8 @@ public class Simulation {
                     }
                 }
             }
+            polypithMove = !polypithMove;
+            predatorMove = !predatorMove;
             if (allPredators.isEmpty() && allHerbivore.isEmpty() && allGrasses.isEmpty() && allPolypith.size() == 1) {
                 System.out.println("Симуляция завершина, нажмите 0");
                 break;
@@ -140,6 +144,8 @@ public class Simulation {
 
     public void nextTurn() {
         Mapping mapping = actions.getCurrentMap();
+        boolean predatorMove = true;
+        boolean polypithMove = true;
         while (true) {
             List<Predator> allPredators = Mapping.findAllPredators(mapping);
             List<Herbivore> allHerbivore = Mapping.findAllHerbivore(mapping);
@@ -148,7 +154,7 @@ public class Simulation {
             List<Polypith> allPolypith = Mapping.findAllPolypith(mapping);
             List<Entity> ecosystemEntities = Mapping.findEcosystemEntities(mapping);
 
-            if (!allPredators.isEmpty() && !allHerbivore.isEmpty()) {
+            if (predatorMove && !allPredators.isEmpty() && !allHerbivore.isEmpty()) {
                 for (Predator allPredator : allPredators) {
                     Herbivore closestHerbivore = findClosestHerbivore(allPredator, allHerbivore);
                     if (closestHerbivore != null) {
@@ -180,7 +186,7 @@ public class Simulation {
                     }
                 }
             }
-            if (!allHerbivore.isEmpty() && !allGrasses.isEmpty()) {
+            if (!predatorMove && !allHerbivore.isEmpty() && !allGrasses.isEmpty()) {
                 for (Herbivore herbivore : allHerbivore) {
                     Grass closestGrass = findClosestGrass(herbivore, allGrasses);
                     if (closestGrass != null) {
@@ -213,7 +219,7 @@ public class Simulation {
                     }
                 }
             }
-            if (!allPolypith.isEmpty()) {
+            if (polypithMove && !allPolypith.isEmpty()) {
                 for (Polypith polypith : allPolypith) {
                     Entity closestEcosystemEntities = findClosestEntity(polypith, ecosystemEntities);
                     if (closestEcosystemEntities != null) {
@@ -246,6 +252,8 @@ public class Simulation {
                     }
                 }
             }
+            predatorMove = !predatorMove;
+            polypithMove =!polypithMove;
             if (allPredators.isEmpty() && allHerbivore.isEmpty() && allGrasses.isEmpty() && allPolypith.size() == 1) {
                 break;
             }
