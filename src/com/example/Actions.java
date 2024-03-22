@@ -1,8 +1,10 @@
 package com.example;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Actions {
+    private Settings settings = new Settings();
     private Scanner scanner = new Scanner(System.in);;
     private Simulation simulation;
     private Mapping currentMap;
@@ -13,7 +15,8 @@ public class Actions {
     public Actions(){
         this.simulation = new Simulation(this);
     }
-    public void initActions() throws InterruptedException {
+    public void initActions() throws InterruptedException, IOException {
+        settings.loadSettingsFromFile();
         greet();
         requestSpeedFromUser();
         currentMap = Settings.createMap(Integer.parseInt(mapSize));
