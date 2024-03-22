@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Settings {
-    private static File fileURL = new File("src/config");
+    private final File fileURL = new File("src/config");
     public static String predatorAppearance;
     public static String herbivoreAppearance;
     public static String grassAppearance;
